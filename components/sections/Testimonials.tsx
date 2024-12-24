@@ -1,54 +1,61 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import Marquee from "../ui/marquee";
+import { testimonials } from "@/constants/testimonials";
+import BlurFade from "../ui/blur-fade";
 
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "Small Business Owner",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&q=80",
-    quote: "QuickCash has transformed how I manage my business payments. It's intuitive and saves me hours every week."
-  },
-  {
-    name: "Michael Chen",
-    role: "Freelancer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&q=80",
-    quote: "The best payment tracking solution I've ever used. The reminders feature is a game-changer."
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Property Manager",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&q=80",
-    quote: "Managing multiple property payments has never been easier. Highly recommended!"
-  }
-];
+const firstRow = testimonials.slice(0, testimonials.length / 2);
+const secondRow = testimonials.slice(testimonials.length / 2);
 
-export default function Testimonials() {
+const ReviewCard = ({
+  name,
+  role,
+  text,
+}: {
+  name: string;
+  role: string;
+  text: string;
+}) => {
   return (
-    <section className="py-24 bg-[#121212]">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-16">
-          Trusted by thousands of users
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card key={index} className="bg-black/50 border-white/10">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4 mb-4">
-                  <Avatar>
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-white/70">{testimonial.role}</p>
-                  </div>
-                </div>
-                <p className="text-white/80 italic">&ldquo;{testimonial.quote}&rdquo;</p>
-              </CardContent>
-            </Card>
-          ))}
+    <figure
+      className={cn(
+        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        // light styles
+        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+        // dark styles
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+      )}
+    >
+      <div className="flex flex-row items-center gap-2">
+        <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-white bg-[#FF4C4C]">{name.charAt(0)}</div>
+        <div className="flex flex-col">
+          <figcaption className="text-sm font-medium dark:text-white">
+            {name}
+          </figcaption>
+          <p className="text-xs font-medium dark:text-white/40">{role}</p>
         </div>
       </div>
-    </section>
+      <blockquote className="mt-2 text-sm">{text}</blockquote>
+    </figure>
   );
+};
+
+export default function Testimonials() {
+    return (
+        <div id="testimonials">
+            <BlurFade delay={0.3} inView> 
+                <div className="text-4xl font-bold text-center mb-12">What our students say</div>
+            </BlurFade>
+            <BlurFade delay={0.5} inView>
+                <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">
+                    <Marquee pauseOnHover className="[--duration:20s]">
+                        {firstRow.map((testimonial) => (
+                            <ReviewCard key={testimonial.name} {...testimonial} />
+                        ))}
+                    </Marquee>
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+                </div>
+            </BlurFade>
+        </div>
+    );
 }

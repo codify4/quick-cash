@@ -6,14 +6,22 @@ import Header from "@/components/sections/Header";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#121212] text-white">
+    <>
       <Header />
-      <main>
-        <Hero />
-        <Features />
-        <Testimonials />
+      <main className="min-h-screen">
+        <section className="pt-32 pb-24 my-24 px-4">
+          <Hero />
+        </section>
+        <section id="features" className="py-24 mt-64 lg:mt-36 flex items-center justify-center">
+          <Features />
+        </section>
+        <section className="py-24">
+          <Testimonials />
+        </section>
+        <section className="py-24">
+        </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

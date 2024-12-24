@@ -25,7 +25,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 bg-black/50">
+    <section id="features" className="w-full py-24 bg-black/50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-16">
           Everything you need to track your payments
