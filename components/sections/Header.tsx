@@ -15,19 +15,7 @@ export default function Header() {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="#" className="text-white/80 hover:text-white transition-colors">
-            Home
-          </Link>
-          <Link href="#features" className="text-white/80 hover:text-white transition-colors">
-            Features
-          </Link>
-          <Link href="#pricing" className="text-white/80 hover:text-white transition-colors">
-            Pricing
-          </Link>
-          <Button variant="ghost" className="text-white/80 hover:text-white">
-            Sign In
-          </Button>
-          <Button className="bg-[#FF4C4C] hover:bg-[#FF4C4C]/90 text-white">
+          <Button className="bg-[#E53935] hover:bg-[#FF4C4C]/90 text-white">
             Get Started
           </Button>
         </nav>
