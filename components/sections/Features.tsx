@@ -34,9 +34,9 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg border border-white/10 hover:border-[#FF4C4C]/50 transition-colors duration-300 bg-[#121212]"
+              className="p-6 rounded-lg border border-white/10 hover:border-primary/50 transition-colors duration-300 bg-[#121212]"
             >
-              <feature.icon className="h-12 w-12 text-[#FF4C4C] mb-4" />
+              <feature.icon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-white/70">{feature.description}</p>
             </div>

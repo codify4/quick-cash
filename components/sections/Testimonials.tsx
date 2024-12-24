@@ -26,7 +26,7 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-white bg-[#FF4C4C]">{name.charAt(0)}</div>
+        <div className="h-10 w-10 rounded-full flex items-center justify-center text-white bg-primary">{name.charAt(0)}</div>
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
@@ -43,7 +43,7 @@ export default function Testimonials() {
     return (
         <div id="testimonials">
             <BlurFade delay={0.3} inView> 
-                <div className="text-4xl font-bold text-center mb-12">What our students say</div>
+                <div className="text-4xl font-bold text-center mb-12">What our users say</div>
             </BlurFade>
             <BlurFade delay={0.5} inView>
                 <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background">

@@ -14,7 +14,7 @@ export default function Hero() {
             with our powerful tracking tools.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-[#E53935] hover:bg-[#FF4C4C]/90 text-white rounded-xl">
+            <Button size="lg" className="bg-primary hover:bg-primary/80 text-white rounded-lg">
               Sign Up for Free
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

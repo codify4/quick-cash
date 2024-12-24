@@ -15,7 +15,7 @@ export default function Header() {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <Button className="bg-[#E53935] hover:bg-[#FF4C4C]/90 text-white">
+          <Button className="bg-primary hover:bg-primary/80 rounded-lg text-white">
             Get Started
           </Button>
         </nav>
