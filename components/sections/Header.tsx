@@ -1,9 +1,7 @@
 "use client";
-
-import { Button } from "@/components/ui/button";
-import { CreditCard } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import InteractiveHoverButton from "../ui/interactive-hover-button";
 
 export default function Header() {
   return (
@@ -14,10 +12,10 @@ export default function Header() {
           <span className="text-xl font-bold">QuickCash</span>
         </div>
         
-        <nav className="hidden md:flex items-center space-x-8">
-          <Button className="bg-primary hover:bg-primary/80 rounded-lg text-white">
-            Get Started
-          </Button>
+        <nav className="hidden md:flex items-center space-x-8 w-[190px]">
+          <Link className="w-full" href="#features">
+            <InteractiveHoverButton text="Get Started" className="w-full rounded-xl"/>
+          </Link>
         </nav>
       </div>
     </header>
