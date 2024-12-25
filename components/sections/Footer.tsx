@@ -8,16 +8,16 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center">
           <h3 className="font-semibold mb-4">Connect</h3>
           <div className="flex space-x-4 items-center">
-            <Link href="https://x.com/Ijon_k4" className="text-white/70 hover:text-[#FF4C4C] transition-colors">
+            <Link href="https://x.com/Ijon_k4" className="text-white/70 hover:text-primary transition-colors">
               <Twitter className="h-5 w-5" />
             </Link>
-            <Link href="https://www.instagram.com/k_ijon7/" className="text-white/70 hover:text-[#FF4C4C] transition-colors">
+            <Link href="https://www.instagram.com/k_ijon7/" className="text-white/70 hover:text-primary transition-colors">
               <Instagram className="h-5 w-5" />
             </Link>
-            <Link href="https://github.com/codify4" className="text-white/70 hover:text-[#FF4C4C] transition-colors">
+            <Link href="https://github.com/codify4" className="text-white/70 hover:text-primary transition-colors">
               <Github className="h-5 w-5" />
             </Link>
-            <Link href="https://www.linkedin.com/in/ijon-kushta-320b6831b/" className="text-white/70 hover:text-[#FF4C4C] transition-colors">
+            <Link href="https://www.linkedin.com/in/ijon-kushta-320b6831b/" className="text-white/70 hover:text-primary transition-colors">
               <Linkedin className="h-5 w-5" />
             </Link>
           </div>

@@ -20,7 +20,7 @@ const ReviewCard = ({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-0 group-hover/card:opacity-100 transition-all duration-300" />
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
-          <div className="h-12 w-12 rounded-full flex items-center justify-center text-white bg-primary text-lg font-medium transition-transform duration-300 group-hover/card:scale-110">
+          <div className="h-12 w-12 rounded-full flex items-center justify-center text-white bg-primary/80 text-lg font-medium transition-transform duration-300 group-hover/card:scale-110">
             {name.charAt(0)}
           </div>
           <div className="flex flex-col">
