@@ -3,6 +3,7 @@ import Features from "@/components/sections/Features";
 import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
+import CTA from "@/components/sections/CTA";
 
 export default function Home() {
   return (
@@ -18,7 +19,8 @@ export default function Home() {
         <section className="py-24">
           <Testimonials />
         </section>
-        <section className="py-24">
+        <section className="pt-24">
+          <CTA />
         </section>
       </main>
       <Footer />
