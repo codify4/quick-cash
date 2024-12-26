@@ -3,12 +3,11 @@ import { redirect } from "next/navigation"
 
 const Dashboard = async () => {
     const supabase = await createClient()
+    const { data } = await supabase.auth.getUser()
 
-    const { data, error } = await supabase.auth.getUser()
-    if (error || !data?.user) {
-      redirect('/signin')
+    if (!data.user) {
+        redirect('/signin')
     }
-    
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-full max-w-md">
