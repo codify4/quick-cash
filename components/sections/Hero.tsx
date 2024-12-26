@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import InteractiveHoverButton from "../ui/interactive-hover-button";
 import Particles from "../ui/particles";
 import BlurFade from "../ui/blur-fade";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -22,14 +23,20 @@ export default function Hero() {
           </BlurFade>
           <BlurFade delay={0.4}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <InteractiveHoverButton 
-                text="Get Started" 
-                className="hidden lg:block w-1/4 rounded-xl hover:scale-105 transition-transform duration-300"
-              />
-              <Button className="w-full sm:w-10/12 lg:hidden rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors duration-300">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4 animate-bounce-x" />
-              </Button>
+              <Link href="/signin" className="hidden lg:block w-1/4">
+                <InteractiveHoverButton 
+                  text="Get Started" 
+                  className=" w-full rounded-xl hover:scale-105 transition-transform duration-300"
+                />
+                
+              </Link>
+
+              <Link href="/signin" className="w-9/12 sm:w-1/3 lg:hidden">
+                <Button className="w-full rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors duration-300">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4 animate-bounce-x" />
+                </Button>
+              </Link>
             </div>
           </BlurFade>
         </div>
