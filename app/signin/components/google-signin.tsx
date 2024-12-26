@@ -6,10 +6,8 @@ import Form from 'next/form'
 
 const GoogleSignin = () => {
     return (
-        <Form 
-            action={GoogleSignIn}
-        >
-            <Button className="bg-primary hover:bg-primary/80 w-full py-5 rounded-lg flex items-center justify-center gap-2 text-white">
+        <form>
+            <Button formAction={GoogleSignIn} className="bg-primary hover:bg-primary/80 w-full py-5 rounded-lg flex items-center justify-center gap-2 text-white">
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" 
@@ -22,7 +20,7 @@ const GoogleSignin = () => {
                   </svg>
                 Sign in with Google
             </Button>
-        </Form>
+        </form>
     )
 }
 

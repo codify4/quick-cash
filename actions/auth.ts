@@ -18,7 +18,9 @@ export async function GoogleSignIn() {
     if(error){
         return redirect('/signin?message=Could not authenticate');
     }
-  
+
+    console.log(data);
+
     redirect(data.url);
 }
 
