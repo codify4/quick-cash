@@ -3,16 +3,21 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server';
 
-export async function oAuthSignIn() {
+export async function GoogleSignIn() {
     const supabase = await createClient();
   
     const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
     });
+
+    const { data } = await supabase.auth.getUser();
+    console.log(data); 
   
     if(error){
         return redirect('/signin?message=Could not authenticate');
     }
+
+    console.log('Signed in');
   
     redirect('/dashboard');
 }
@@ -27,4 +32,3 @@ export async function logOut() {
     
     redirect('/signin');
 }
-

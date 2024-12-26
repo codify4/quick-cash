@@ -1,14 +1,13 @@
-import { oAuthSignIn } from "@/actions/auth"
+'use client'
+
+import { GoogleSignIn } from "@/actions/auth"
 import { Button } from "@/components/ui/button"
 import Form from 'next/form'
 
 const GoogleSignin = () => {
     return (
         <Form 
-            action={async () => {
-                'use server'
-                await oAuthSignIn()
-            }}
+            action={GoogleSignIn}
         >
             <Button className="bg-primary hover:bg-primary/80 w-full py-5 rounded-lg flex items-center justify-center gap-2 text-white">
                 <svg 
