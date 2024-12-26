@@ -2,24 +2,24 @@
 
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server';
+import { getURL } from '@/utils/helpers';
 
 export async function GoogleSignIn() {
     const supabase = await createClient();
+    const redirectUrl = getURL() + '/dashboard';
   
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+            redirectTo: redirectUrl,
+        },
     });
-
-    const { data } = await supabase.auth.getUser();
-    console.log(data); 
   
     if(error){
         return redirect('/signin?message=Could not authenticate');
     }
-
-    console.log('Signed in');
   
-    redirect('/dashboard');
+    redirect(data.url);
 }
 
 export async function logOut() {
