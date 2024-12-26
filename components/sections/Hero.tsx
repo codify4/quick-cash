@@ -11,13 +11,13 @@ export default function Hero() {
         <div className="max-w-3xl mx-auto space-y-8">
           <BlurFade>
             <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#ff3a36] to-[#6b0200] animate-gradient">
-              Track all Your Payments in One Powerful Tool
+              Track all Your Payments in One Tool
             </h1>
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto hover:text-white transition-colors duration-300">
-              Manage loans, downpayments, and other payments with ease. Stay on top of your finances
-              with our powerful tracking tool.
+              Manage loans and other payments with ease. Keep track of your expenses and stay on top of your finances
+              with our powerful tool.
             </p>
           </BlurFade>
           <BlurFade delay={0.4}>

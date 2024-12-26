@@ -22,15 +22,12 @@ const CTA = () => {
                 <BlurFade delay={0.2}>
                     <div className="flex flex-col items-center text-center">
                         <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
-                            Join thousands of satisfied users who have already discovered the easiest way to manage their finances. Start your journey today!
+                            Join QuickCash and make your life easier while managing your finances and tracking your expenses. Start your journey today!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Button className="w-full sm:w-auto px-8 py-3 rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors duration-300">
                                 Get Started Free
                                 <ArrowRight className="ml-2 h-4 w-4 animate-bounce-x" />
-                            </Button>
-                            <Button variant="outline" className="w-full sm:w-auto px-8 py-3 rounded-xl border border-white/10 hover:bg-white/5">
-                                See How It Works
                             </Button>
                         </div>
                     </div>

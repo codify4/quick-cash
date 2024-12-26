@@ -1,4 +1,4 @@
-import { Bell, ChartBar, CreditCard, Shield } from "lucide-react";
+import { Bell, ChartBar, CreditCard, HandCoins, Shield } from "lucide-react";
 import BlurFade from "../ui/blur-fade";
 
 const features = [
@@ -8,9 +8,9 @@ const features = [
     description: "Keep track of all your payments in one place"
   },
   {
-    icon: Bell,
-    title: "Smart Alerts",
-    description: "Get notified about upcoming payments"
+    icon: HandCoins,
+    title: "Track Expenses",
+    description: "Keep track of business or personal expenses."
   },
   {
     icon: ChartBar,
@@ -20,7 +20,7 @@ const features = [
   {
     icon: Shield,
     title: "Secure & Private",
-    description: "Bank-level security for your data"
+    description: "High security and privacy for your financial data"
   }
 ];
 
