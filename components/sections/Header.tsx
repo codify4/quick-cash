@@ -13,7 +13,7 @@ export default function Header() {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8 w-[190px]">
-          <Link className="w-full" href="#features">
+          <Link className="w-full" href="/signin">
             <InteractiveHoverButton text="Get Started" className="w-full rounded-xl bg-transparent"/>
           </Link>
         </nav>

@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import BlurFade from "../ui/blur-fade";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const CTA = () => {
     return (
@@ -25,10 +26,12 @@ const CTA = () => {
                             Join QuickCash and make your life easier while managing your finances and tracking your expenses. Start your journey today!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button className="w-full sm:w-auto px-8 py-3 rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors duration-300">
-                                Get Started Free
-                                <ArrowRight className="ml-2 h-4 w-4 animate-bounce-x" />
-                            </Button>
+                            <Link href="/signin">
+                                <Button className="w-full sm:w-auto px-8 py-3 rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors duration-300">
+                                    Join Now
+                                    <ArrowRight className="ml-2 h-4 w-4 animate-bounce-x" />
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </BlurFade>
