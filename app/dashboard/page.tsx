@@ -16,7 +16,7 @@ const Dashboard = async () => {
             <div className="w-full max-w-md">
                 <div className="flex items-center justify-between">
                     <h2 className="text-2xl font-bold">Dashboard</h2>
-                    <p>Hello, {user.email}</p>
+                    <p>Hello, {user.user_metadata.full_name}</p>
                     <Logout />
                 </div>
             </div>
