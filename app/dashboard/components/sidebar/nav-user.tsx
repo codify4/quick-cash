@@ -46,7 +46,7 @@ export function NavUser({
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton className="group-data-[state=collapsed]:justify-centery py-6">
+            <SidebarMenuButton className="group-data-[state=collapsed]:justify-center py-6">
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback>
