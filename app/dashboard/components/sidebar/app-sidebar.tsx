@@ -17,22 +17,22 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { useUser } from "../../../../hooks/use-user"
+import { useUser } from '@/hooks/use-user'
 
 const tabs = [
   {
     name: "Expenses",
-    url: "#",
+    url: "/dashboard/expenses",
     icon: Receipt,
   },
   {
     name: "Loans",
-    url: "#",
+    url: "/dashboard/loans",
     icon: Wallet,
   },
   {
     name: "Payments",
-    url: "#",
+    url: "/dashboard/payments",
     icon: CreditCard,
   },
 ]
@@ -55,7 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   } : null
 
   return (
-    <Sidebar {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={teams} />
       </SidebarHeader>
