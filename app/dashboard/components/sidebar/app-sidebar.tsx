@@ -4,7 +4,7 @@ import * as React from "react"
 import {
   Receipt,
   Wallet,
-  CreditCard,
+  Repeat,
 } from "lucide-react"
 
 import { NavTabs } from "@/app/dashboard/components/sidebar/nav-tabs"
@@ -31,9 +31,9 @@ const tabs = [
     icon: Wallet,
   },
   {
-    name: "Payments",
-    url: "/dashboard/payments",
-    icon: CreditCard,
+    name: "Subscriptions",
+    url: "/dashboard/subscriptions",
+    icon: Repeat,
   },
 ]
 
