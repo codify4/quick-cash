@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import {
-  Frame,
-  Map,
-  PieChart,
+  Receipt,
+  Wallet,
+  CreditCard,
 } from "lucide-react"
 
 import { NavTabs } from "@/app/dashboard/components/sidebar/nav-tabs"
@@ -17,51 +17,53 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { useUser } from "../../../../hooks/use-user"
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+const tabs = [
+  {
+    name: "Expenses",
+    url: "#",
+    icon: Receipt,
   },
-  teams: [
-    {
-      name: "QuickCash",
-      logo: '/logo.png',
-      plan: "Enterprise",
-    },
-  ],
-  tabs: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-}
+  {
+    name: "Loans",
+    url: "#",
+    icon: Wallet,
+  },
+  {
+    name: "Payments",
+    url: "#",
+    icon: CreditCard,
+  },
+]
+
+const teams = [
+  {
+    name: "QuickCash",
+    logo: '/logo.png',
+    plan: "Enterprise",
+  },
+]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user, loading } = useUser()
+  
+  const userData = user ? {
+    name: user.user_metadata?.full_name || user.email?.split('@')[0] || 'User',
+    email: user.email || '',
+    avatar: user.user_metadata?.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${user.email}`,
+  } : null
+
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher teams={teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavTabs tabs={data.tabs} />
+        <NavTabs tabs={tabs} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {userData && <NavUser user={userData} />}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

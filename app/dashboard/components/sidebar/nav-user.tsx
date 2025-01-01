@@ -5,7 +5,6 @@ import {
   Bell,
   ChevronsUpDown,
   CreditCard,
-  LogOut,
   Sparkles,
 } from "lucide-react"
 
@@ -29,6 +28,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import Logout from "@/components/logout"
 
 export function NavUser({
   user,
@@ -65,7 +65,7 @@ export function NavUser({
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-full rounded-lg"
+            className="w-full rounded-lg p-2"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -105,9 +105,8 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              Log out
+            <DropdownMenuItem className="w-full p-2 hover:bg-transparent focus:bg-transparent">
+              <Logout />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
