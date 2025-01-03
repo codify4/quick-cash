@@ -6,7 +6,7 @@ import { getURL } from '@/utils/helpers';
 
 export async function GoogleSignIn() {
     const supabase = await createClient();
-    const redirectUrl = getURL() + '/auth/callback';
+    const redirectUrl = getURL('/auth/callback');
   
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
