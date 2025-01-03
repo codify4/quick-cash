@@ -7,7 +7,7 @@ const CTA = () => {
     return (
         <section className="w-full py-32 relative bg-black/40">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-black/50 to-black/80" />
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+            <div className="absolute inset-0 opacity-10" />
             <div className="absolute inset-0 backdrop-blur-[2px]" />
             <div className="container mx-auto px-4 relative">
                 <BlurFade>
