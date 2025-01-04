@@ -13,6 +13,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 export function NavTabs({
   tabs,
@@ -23,7 +25,7 @@ export function NavTabs({
     icon: LucideIcon
   }[]
 }) {
-  const { isMobile } = useSidebar()
+  const pathname = usePathname();
 
   return (
     <SidebarGroup>
@@ -32,8 +34,20 @@ export function NavTabs({
         {tabs.map((item) => (
           <SidebarMenuItem key={item.name} className="flex flex-row items-center justify-center">
             <SidebarMenuButton asChild>
-              <Link href={item.url} className="group flex items-center gap-3 group-data-[state=collapsed]:justify-center">
-                <item.icon size={18} className="flex items-center justify-center" />
+              <Link 
+                href={item.url} 
+                className={cn(
+                  "group flex items-center gap-3 group-data-[state=collapsed]:justify-center",
+                  pathname === item.url && "bg-accent text-accent-foreground"
+                )}
+              >
+                <item.icon 
+                  size={18} 
+                  className={cn(
+                    "flex items-center justify-center",
+                    pathname === item.url && "text-accent-foreground"
+                  )} 
+                />
                 <span className="group-data-[state=collapsed]:hidden">{item.name}</span>
               </Link>
             </SidebarMenuButton>

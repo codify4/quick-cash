@@ -12,18 +12,26 @@ import {
 
 export function BreadcrumbNav() {
   const pathname = usePathname();
-  const currentPage = pathname.split('/').pop();
+  const pathParts = pathname.split('/').filter(Boolean);
+  const isRootDashboard = pathParts.length === 1 && pathParts[0] === 'dashboard';
+  const currentPage = pathParts[pathParts.length - 1];
   const formattedPage = currentPage ? currentPage.charAt(0).toUpperCase() + currentPage.slice(1) : '';
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem className="hidden md:block">
-          <BreadcrumbLink href="/dashboard">
-            Dashboard
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        {formattedPage && (
+        {!isRootDashboard ? (
+          <BreadcrumbItem className="hidden md:block">
+            <BreadcrumbLink href="/dashboard">
+              Dashboard
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        ) : (
+          <BreadcrumbItem>
+            <BreadcrumbPage>Dashboard</BreadcrumbPage>
+          </BreadcrumbItem>
+        )}
+        {formattedPage && !isRootDashboard && (
           <>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
