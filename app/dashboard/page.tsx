@@ -29,7 +29,7 @@ export default function DashboardPage() {
   if (!user) return null;
     
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
+    <div className="py-6 max-w-7xl mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold">Welcome back!</h1>
         <p className="text-muted-foreground">{user.user_metadata?.full_name || user.email?.split('@')[0] || 'User'}</p>

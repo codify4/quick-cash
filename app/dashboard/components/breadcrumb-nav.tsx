@@ -21,7 +21,7 @@ export function BreadcrumbNav() {
     <Breadcrumb>
       <BreadcrumbList>
         {!isRootDashboard ? (
-          <BreadcrumbItem className="hidden md:block">
+          <BreadcrumbItem className="block">
             <BreadcrumbLink href="/dashboard">
               Dashboard
             </BreadcrumbLink>
@@ -33,7 +33,7 @@ export function BreadcrumbNav() {
         )}
         {formattedPage && !isRootDashboard && (
           <>
-            <BreadcrumbSeparator className="hidden md:block" />
+            <BreadcrumbSeparator className="block" />
             <BreadcrumbItem>
               <BreadcrumbPage>{formattedPage}</BreadcrumbPage>
             </BreadcrumbItem>
