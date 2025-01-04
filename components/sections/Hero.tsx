@@ -17,8 +17,7 @@ export default function Hero() {
           </BlurFade>
           <BlurFade delay={0.2}>
             <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto hover:text-white transition-colors duration-300">
-              Manage loans and other payments with ease. Keep track of your expenses and stay on top of your finances
-              with our powerful tool.
+              Manage expenses, loans and subscriptions with ease. Get started now and take control of your finances.
             </p>
           </BlurFade>
           <BlurFade delay={0.4}>

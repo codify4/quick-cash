@@ -23,7 +23,7 @@ const CTA = () => {
                 <BlurFade delay={0.2}>
                     <div className="flex flex-col items-center text-center">
                         <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
-                            Join QuickCash and make your life easier while managing your finances and tracking your expenses. Start your journey today!
+                            Join QuickCash and manage your expenses, loans, and subscriptions with ease. Start your journey today!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
                             <Link href="/signin">

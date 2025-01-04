@@ -1,25 +1,25 @@
-import { Bell, ChartBar, CreditCard, HandCoins, Shield } from "lucide-react";
+import { Receipt, Repeat, Shield, Wallet } from "lucide-react";
 import BlurFade from "../ui/blur-fade";
 
 const features = [
   {
-    icon: CreditCard,
-    title: "Track Payments",
-    description: "Keep track of all your payments in one place"
+    icon: Receipt,
+    title: "Expenses",  
+    description: "Track of all your expenses with just one tool."
   },
   {
-    icon: HandCoins,
-    title: "Track Expenses",
-    description: "Keep track of business or personal expenses."
+    icon: Wallet,
+    title: "Loans",
+    description: "Keep track of business or personal loans."
   },
   {
-    icon: ChartBar,
-    title: "Visual Reports",
-    description: "See your financial data come to life"
+    icon: Repeat,
+    title: "Subscriptions",
+    description: "Keep track of all your subscriptions in one place."
   },
   {
     icon: Shield,
-    title: "Secure & Private",
+    title: "Privacy and Security",
     description: "High security and privacy for your financial data"
   }
 ];
