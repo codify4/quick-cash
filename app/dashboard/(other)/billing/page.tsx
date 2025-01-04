@@ -57,7 +57,7 @@ export default function BillingPage() {
                 </p>
             </div>
 
-            <div className="grid gap-6 w-full lg:w-10/12 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 w-full lg:w-10/12">
                 {plans.map((plan) => (
                     <div key={plan.name} className="h-full">
                         <PricingCard
