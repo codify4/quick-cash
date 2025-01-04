@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
+  CircleUser,
   CreditCard,
   Sparkles,
 } from "lucide-react"
@@ -96,14 +97,14 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Link href="/dashboard/account" className="w-full flex items-center gap-2">
-                  <BadgeCheck />
+                  <CircleUser />
                   Account
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/dashboard/billing" className="w-full flex items-center gap-2">
+                <Link href="/dashboard/plans" className="w-full flex items-center gap-2">
                   <CreditCard />
-                  Billing
+                  Plans
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>

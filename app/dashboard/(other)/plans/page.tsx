@@ -46,7 +46,7 @@ const plans = [
 
 const currentPlan = "Free Plan"
 
-export default function BillingPage() {
+export default function PlansPage() {
     return (
         <div className="container mx-auto py-6 space-y-8 flex flex-col items-center">
             <div className="flex flex-col items-center text-center w-full lg:w-10/12 space-y-4">
