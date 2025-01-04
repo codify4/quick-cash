@@ -22,7 +22,6 @@ export function PricingCard({
     popular,
     currentPlan
 }: PricingCardProps) {
-    const { formatCurrency } = useCurrency()
 
     return (
         <Card className={`relative h-full flex flex-col ${popular ? 'border-primary shadow-lg' : ''}`}>
@@ -40,7 +39,7 @@ export function PricingCard({
             <CardContent className="flex-1 flex flex-col">
                 {/* Price section - fixed height */}
                 <div className="h-16 flex items-center">
-                    <span className="text-3xl font-bold">{formatCurrency(price)}</span>
+                    <span className="text-3xl font-bold">${price}</span>
                     <span className="text-muted-foreground ml-1">/month</span>
                 </div>
 
