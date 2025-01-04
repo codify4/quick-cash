@@ -1,15 +1,32 @@
-import { createClient } from "@/utils/supabase/server";
+'use client'
+
+import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Plus, Target, Wallet } from "lucide-react";
 import Link from "next/link";
+import { useCurrency } from "@/hooks/use-currency";
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 
-export default async function DashboardPage() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+export default function DashboardPage() {
+  const [user, setUser] = useState<User>();
+  const { formatCurrency } = useCurrency();
+  const supabase = createClient();
 
-  if (!user) redirect('/signin');
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        redirect('/signin');
+      }
+      setUser(user);
+    };
+    getUser();
+  }, []);
+
+  if (!user) return null;
     
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">
@@ -52,15 +69,15 @@ export default async function DashboardPage() {
           <CardContent className="flex flex-col items-start justify-between gap-y-8">
             <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Loans</span>
-              <span className="font-medium">$0.00</span>
+              <span className="font-medium">{formatCurrency(0)}</span>
             </div>
             <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Expenses</span>
-              <span className="font-medium">$0.00</span>
+              <span className="font-medium">{formatCurrency(0)}</span>
             </div>
             <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Subscriptions</span>
-              <span className="font-medium">$0.00</span>
+              <span className="font-medium">{formatCurrency(0)}</span>
             </div>
           </CardContent>
         </Card>
