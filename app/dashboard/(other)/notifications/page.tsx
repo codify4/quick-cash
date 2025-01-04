@@ -82,7 +82,7 @@ export default function NotificationsPage() {
                         <CardDescription>Your notification history</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <ScrollArea className="h-[400px] pr-4">
+                        <ScrollArea className="h-[400px]">
                             <div className="space-y-4">
                                 {mockNotifications.map((notification) => (
                                     <div
