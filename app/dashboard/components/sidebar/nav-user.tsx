@@ -29,6 +29,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import Logout from "@/components/logout"
+import Link from "next/link"
 
 export function NavUser({
   user,
@@ -85,23 +86,31 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <Link href="/dashboard/billing" className="w-full flex items-center gap-2">
+                  <Sparkles />
+                  Upgrade to Pro
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
-                Account
+                <Link href="/dashboard/account" className="w-full flex items-center gap-2">
+                  <BadgeCheck />
+                  Account
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCard />
-                Billing
+                <Link href="/dashboard/billing" className="w-full flex items-center gap-2">
+                  <CreditCard />
+                  Billing
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell />
-                Notifications
+                <Link href="/dashboard/notifications" className="w-full flex items-center gap-2">
+                  <Bell />
+                  Notifications
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
