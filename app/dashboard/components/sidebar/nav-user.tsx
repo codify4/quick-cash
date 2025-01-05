@@ -87,7 +87,7 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href="/dashboard/billing" className="w-full flex items-center gap-2">
+                <Link href="/dashboard/plans" className="w-full flex items-center gap-2">
                   <Sparkles />
                   Upgrade to Pro
                 </Link>

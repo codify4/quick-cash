@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Bell, Mail, MessageSquare } from "lucide-react"
 import { useUser } from "@/hooks/use-user"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import NotificationCard from "../../components/notification-card"
 
 interface NotificationItem {
     id: string
@@ -51,13 +52,13 @@ export default function NotificationsPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Notifications</h1>
                     <p className="text-muted-foreground">Manage your notification preferences and view history</p>
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="rounded-lg p-5">
                     Mark all as read
                 </Button>
             </div>
 
             <div className="grid gap-6 w-full lg:w-10/12">
-                <Card className="rounded-xl">
+                <Card className="rounded-2xl">
                     <CardHeader>
                         <CardTitle>Notification Settings</CardTitle>
                         <CardDescription>Choose how you want to be notified</CardDescription>
@@ -76,7 +77,7 @@ export default function NotificationsPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="rounded-xl">
+                <Card className="rounded-2xl">
                     <CardHeader>
                         <CardTitle>Recent Notifications</CardTitle>
                         <CardDescription>Your notification history</CardDescription>
@@ -85,22 +86,7 @@ export default function NotificationsPage() {
                         <ScrollArea className="h-[400px]">
                             <div className="space-y-4">
                                 {mockNotifications.map((notification) => (
-                                    <div
-                                        key={notification.id}
-                                        className={`p-4 rounded-xl border ${
-                                            notification.read ? 'bg-background' : 'bg-primary/5 border-primary/20'
-                                        }`}
-                                    >
-                                        <div className="flex justify-between items-start mb-1">
-                                            <h3 className="font-medium">{notification.title}</h3>
-                                            <span className="text-xs text-muted-foreground">
-                                                {notification.date}
-                                            </span>
-                                        </div>
-                                        <p className="text-sm text-muted-foreground">
-                                            {notification.message}
-                                        </p>
-                                    </div>
+                                    <NotificationCard key={notification.id} notification={notification} />
                                 ))}
                             </div>
                         </ScrollArea>

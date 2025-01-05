@@ -44,11 +44,11 @@ export default function AccountPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Account Settings</h1>
                     <p className="text-muted-foreground">Manage your account settings and preferences</p>
                 </div>
-                <Button variant="outline">Save Changes</Button>
+                <Button variant="outline" className="rounded-lg p-5">Save Changes</Button>
             </div>
 
             <div className="grid gap-6 w-full lg:w-10/12">
-                <Card className="rounded-xl">
+                <Card className="rounded-2xl">
                     <CardHeader>
                         <CardTitle>Profile</CardTitle>
                         <CardDescription>Update your personal information</CardDescription>
@@ -73,7 +73,7 @@ export default function AccountPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="rounded-xl">
+                <Card className="rounded-2xl">
                     <CardHeader>
                         <CardTitle>Preferences</CardTitle>
                         <CardDescription>Set your default preferences</CardDescription>
@@ -100,7 +100,7 @@ export default function AccountPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="rounded-xl">
+                <Card className="rounded-2xl">
                     <CardHeader>
                         <CardTitle>Security</CardTitle>
                         <CardDescription>Manage your password and security settings</CardDescription>

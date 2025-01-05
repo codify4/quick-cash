@@ -36,7 +36,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        <Card className="rounded-xl">
+        <Card className="rounded-2xl hover:scale-105 transition-transform duration-300">
           <CardHeader>
             <CardTitle>Quick Links</CardTitle>
           </CardHeader>
@@ -62,7 +62,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl">
+        <Card className="rounded-2xl hover:scale-105 transition-transform duration-300">
           <CardHeader>
             <CardTitle>Monthly Overview</CardTitle>
           </CardHeader>
@@ -82,7 +82,7 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl">
+        <Card className="rounded-2xl hover:scale-105 transition-transform duration-300">
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
