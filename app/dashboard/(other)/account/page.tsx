@@ -48,7 +48,7 @@ export default function AccountPage() {
             </div>
 
             <div className="grid gap-6 w-full lg:w-10/12">
-                <Card>
+                <Card className="rounded-xl">
                     <CardHeader>
                         <CardTitle>Profile</CardTitle>
                         <CardDescription>Update your personal information</CardDescription>
@@ -73,7 +73,7 @@ export default function AccountPage() {
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="rounded-xl">
                     <CardHeader>
                         <CardTitle>Preferences</CardTitle>
                         <CardDescription>Set your default preferences</CardDescription>
@@ -100,7 +100,7 @@ export default function AccountPage() {
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="rounded-xl">
                     <CardHeader>
                         <CardTitle>Security</CardTitle>
                         <CardDescription>Manage your password and security settings</CardDescription>

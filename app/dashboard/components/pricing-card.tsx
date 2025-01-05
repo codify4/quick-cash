@@ -24,7 +24,7 @@ export function PricingCard({
 }: PricingCardProps) {
 
     return (
-        <Card className={`relative h-full flex flex-col ${popular ? 'border-primary shadow-lg' : ''}`}>
+        <Card className={`relative h-full flex flex-col rounded-2xl ${popular ? 'border-primary shadow-lg' : ''}`}>
             {popular && (
                 <div className="absolute -top-3 left-0 right-0 flex justify-center">
                     <span className="bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground rounded-full">

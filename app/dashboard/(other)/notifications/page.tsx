@@ -57,7 +57,7 @@ export default function NotificationsPage() {
             </div>
 
             <div className="grid gap-6 w-full lg:w-10/12">
-                <Card>
+                <Card className="rounded-xl">
                     <CardHeader>
                         <CardTitle>Notification Settings</CardTitle>
                         <CardDescription>Choose how you want to be notified</CardDescription>
@@ -76,7 +76,7 @@ export default function NotificationsPage() {
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="rounded-xl">
                     <CardHeader>
                         <CardTitle>Recent Notifications</CardTitle>
                         <CardDescription>Your notification history</CardDescription>
@@ -87,7 +87,7 @@ export default function NotificationsPage() {
                                 {mockNotifications.map((notification) => (
                                     <div
                                         key={notification.id}
-                                        className={`p-4 rounded-lg border ${
+                                        className={`p-4 rounded-xl border ${
                                             notification.read ? 'bg-background' : 'bg-primary/5 border-primary/20'
                                         }`}
                                     >
