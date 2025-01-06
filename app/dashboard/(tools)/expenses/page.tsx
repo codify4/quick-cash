@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Plus, Receipt } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Overview from "../../components/expenses/overview"
-import Categories from "../../components/expenses/categories"
+import Categories from "../../components/expenses/categories/categories"
 
 const ExpensesPage = () => {
   return (

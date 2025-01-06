@@ -52,7 +52,7 @@ export function AddExpense() {
                     Add Expense
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="w-11/12">
                 <DialogHeader>
                     <DialogTitle>Add New Expense</DialogTitle>
                 </DialogHeader>

@@ -1,8 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import ExpenseCard from "../categories/expense-card"
+import ExpenseCard from "./expense-card"
 import { ShoppingBag, Utensils, Car, Lightbulb, Gamepad } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import AddExpense from "../categories/add-expense"
+import AddExpense from "./add-expense"
 
 const expenses = [
     { name: "Food & Dining", description: "Groceries, restaurants, and dining out", amount: 850, icon: Utensils },
@@ -18,7 +18,7 @@ const Categories = () => {
     return (
         <Card>
             <CardHeader>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-y-4 lg:flex-row lg:items-center lg:justify-between w-full">
                     <div>
                         <CardTitle>Categories</CardTitle>
                         <CardDescription>This month's breakdown</CardDescription>
@@ -41,15 +41,17 @@ const Categories = () => {
                     </Select>
                 </div>
 
-                {expenses.map((expense, index) => (
-                    <ExpenseCard 
-                        key={index}
-                        name={expense.name}
-                        description={expense.description}
-                        amount={expense.amount}
-                        icon={expense.icon}
-                    />
-                ))}
+                <div className="grid gricol-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {expenses.map((expense, index) => (
+                        <ExpenseCard 
+                            key={index}
+                            name={expense.name}
+                            description={expense.description}
+                            amount={expense.amount}
+                            icon={expense.icon}
+                        />
+                    ))}
+                </div>
 
                 <div className="pt-4 border-t">
                     <div className="grid grid-cols-3 gap-4 text-sm">
