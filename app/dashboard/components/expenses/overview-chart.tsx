@@ -39,44 +39,44 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function OverviewChart() {
-  return (
-    <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
-      <CardHeader>
-        <CardTitle>Expenses Chart</CardTitle>
-        <CardDescription>January - December 2025</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[400px] w-full">
-          <LineChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Line
-              dataKey="expenses"
-              type="linear"
-              stroke="var(--color-expenses)"
-              strokeWidth={2}
-              dot={false}
-            />
-          </LineChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
-  )
+    return (
+        <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
+            <CardHeader>
+                <CardTitle>Expenses Chart</CardTitle>
+                <CardDescription>January - December 2025</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <ChartContainer config={chartConfig} className="h-[400px] w-full">
+                    <LineChart
+                        accessibilityLayer
+                        data={chartData}
+                        margin={{
+                            left: 12,
+                            right: 12,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} />
+                        <XAxis
+                            dataKey="month"
+                            tickLine={false}
+                            axisLine={false}
+                            tickMargin={8}
+                            tickFormatter={(value) => value.slice(0, 3)}
+                        />
+                        <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent hideLabel />}
+                        />
+                        <Line
+                            dataKey="expenses"
+                            type="linear"
+                            stroke="var(--color-expenses)"
+                            strokeWidth={2}
+                            dot={false}
+                        />
+                    </LineChart>
+                </ChartContainer>
+            </CardContent>
+        </Card>
+    )
 }

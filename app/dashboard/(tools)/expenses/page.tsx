@@ -1,12 +1,7 @@
 import { Receipt } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Overview from "../../components/expenses/overview"
 import Categories from "../../components/expenses/categories/categories"
-import Tabber from "../../components/tabber"
-
-const expenseTabs = [
-  { label: "Overview", value: "overview", icon: "Receipt", content: <Overview /> },
-  { label: "Categories", value: "categories", icon: "PieChart", content: <Categories /> },
-]
 
 const ExpensesPage = () => {
   return (
@@ -19,10 +14,20 @@ const ExpensesPage = () => {
         <p className="text-muted-foreground">Track and manage your spending</p>
       </div>
 
-      <Tabber
-        className="w-full lg:w-10/12 mt-5 mb-0"
-        tabs={expenseTabs}
-      />
+      <Tabs defaultValue="overview" className="w-full lg:w-10/12">
+        <TabsList className="flex w-full rounded-xl">
+          <TabsTrigger value="overview" className="w-1/2 rounded-lg">Overview</TabsTrigger>
+          <TabsTrigger value="categories" className="w-1/2 rounded-lg">Categories</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="overview" className="space-y-4 w-[390px] sm:w-[480px] lg:w-full">
+          <Overview />
+        </TabsContent>
+
+        <TabsContent value="categories" className="space-y-4">
+          <Categories />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

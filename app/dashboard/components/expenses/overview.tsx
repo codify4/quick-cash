@@ -5,10 +5,11 @@ import { OverviewChart } from "./overview-chart"
 import { useCurrency } from "@/hooks/use-currency"
 
 const Overview = () => {
-    const { formatCurrency } = useCurrency()
+    const { formatCurrency } = useCurrency();
+
     return (
-        <div className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2">
+        <div className="flex flex-col w-full">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 w-full">
                 <Card className="w-full lg:hover:scale-105 transition-transform duration-300 rounded-xl">
                     <CardHeader>
                         <CardTitle>Monthly Summary</CardTitle>
@@ -35,7 +36,9 @@ const Overview = () => {
                     </CardContent>
                 </Card>
             </div>
-            <OverviewChart />
+            <div className="w-full mt-4">
+                <OverviewChart />
+            </div>
         </div>
     )
 }
