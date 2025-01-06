@@ -3,7 +3,7 @@ import { OverviewChart } from "./overview-chart"
 
 const Overview = () => {
     return (
-        <>
+        <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
                 <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
                     <CardHeader>
@@ -31,10 +31,8 @@ const Overview = () => {
                     </CardContent>
                 </Card>
             </div>
-            <div className="w-full">
-                <OverviewChart />
-            </div>
-        </>
+            <OverviewChart />
+        </div>
     )
 }
 export default Overview

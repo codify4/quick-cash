@@ -40,9 +40,9 @@ const chartConfig = {
 
 export function OverviewChart() {
   return (
-    <Card className="w-full lg:hover:scale-105 transition-transform duration-300 rounded-xl">
+    <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
       <CardHeader>
-        <CardTitle>Line Chart - Linear</CardTitle>
+        <CardTitle>Expenses Chart</CardTitle>
         <CardDescription>January - December 2025</CardDescription>
       </CardHeader>
       <CardContent>
