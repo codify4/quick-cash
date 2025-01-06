@@ -1,14 +1,45 @@
+"use client"
+
 import { Card } from "@/components/ui/card"
-import { LucideIcon } from "lucide-react"
+import { useCurrency } from "@/hooks/use-currency"
+import { 
+    ShoppingBag, 
+    Utensils, 
+    Car, 
+    Lightbulb, 
+    Gamepad, 
+    Plane,
+    Home,
+    Gift,
+    Coffee,
+    Heart,
+    LucideIcon
+} from "lucide-react"
+
+const icons: Record<string, LucideIcon> = {
+    shopping: ShoppingBag,
+    food: Utensils,
+    transportation: Car,
+    utilities: Lightbulb,
+    entertainment: Gamepad,
+    travel: Plane,
+    home: Home,
+    gifts: Gift,
+    coffee: Coffee,
+    health: Heart
+}
 
 interface ExpenseCardProps {
     name: string
     description: string
     amount: number
-    icon: LucideIcon
+    icon: string
 }
 
-const ExpenseCard = ({ name, description, amount, icon: Icon }: ExpenseCardProps) => {
+const ExpenseCard = ({ name, description, amount, icon }: ExpenseCardProps) => {
+    const { formatCurrency } = useCurrency()
+    const Icon = icons[icon] || ShoppingBag
+
     return (
         <Card className="p-6 lg:hover:scale-105 rounded-xl hover:shadow-lg transition-all duration-200 cursor-pointer group">
             <div className="flex flex-col space-y-4">
@@ -17,7 +48,7 @@ const ExpenseCard = ({ name, description, amount, icon: Icon }: ExpenseCardProps
                         <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <span className="text-lg font-semibold">
-                        ${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        {formatCurrency(amount)}
                     </span>
                 </div>
                 <div className="space-y-1.5">

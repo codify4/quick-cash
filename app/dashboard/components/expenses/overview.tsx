@@ -1,7 +1,11 @@
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { OverviewChart } from "./overview-chart"
+import { useCurrency } from "@/hooks/use-currency"
 
 const Overview = () => {
+    const { formatCurrency } = useCurrency()
     return (
         <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
@@ -11,7 +15,7 @@ const Overview = () => {
                         <CardDescription>Your spending this month</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold">$2,450.00</div>
+                        <div className="text-3xl font-bold">{formatCurrency(2450)}</div>
                         <p className="text-xs text-muted-foreground mt-1">
                             20.1% more than last month
                         </p>
@@ -24,9 +28,9 @@ const Overview = () => {
                         <CardDescription>Your spending this year</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold">$28,450.00</div>
+                        <div className="text-3xl font-bold">{formatCurrency(2844)}</div>
                         <p className="text-xs text-muted-foreground mt-1">
-                            Average $2,370.83 per month
+                            Average {formatCurrency(2370)} per month
                         </p>
                     </CardContent>
                 </Card>
