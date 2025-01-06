@@ -20,7 +20,7 @@ const ExpensesPage = () => {
           <TabsTrigger value="categories" className="w-1/2 rounded-lg">Categories</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="overview" className="space-y-4 w-[390px] sm:w-[480px] lg:w-full">
+        <TabsContent value="overview" className="space-y-4 w-[393px] sm:w-[480px] lg:w-full">
           <Overview />
         </TabsContent>
 

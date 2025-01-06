@@ -15,7 +15,7 @@ const Categories = () => {
     const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0)
     
     return (
-        <Card>
+        <Card className="rounded-xl">
             <CardHeader>
                 <div className="flex flex-col gap-y-4 lg:flex-row lg:items-center lg:justify-between w-full">
                     <div>
