@@ -17,7 +17,7 @@ const Categories = () => {
     return (
         <Card>
             <CardHeader>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-y-4 lg:flex-row lg:items-center lg:justify-between w-full">
                     <div>
                         <CardTitle>Categories</CardTitle>
                         <CardDescription>This month's breakdown</CardDescription>

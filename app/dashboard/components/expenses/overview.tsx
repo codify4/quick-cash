@@ -9,7 +9,7 @@ const Overview = () => {
     return (
         <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
-                <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
+                <Card className="w-full lg:hover:scale-105 transition-transform duration-300 rounded-xl">
                     <CardHeader>
                         <CardTitle>Monthly Summary</CardTitle>
                         <CardDescription>Your spending this month</CardDescription>
@@ -22,7 +22,7 @@ const Overview = () => {
                     </CardContent>
                 </Card>
 
-                <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
+                <Card className="w-full lg:hover:scale-105 transition-transform duration-300 rounded-xl">
                     <CardHeader>
                         <CardTitle>Yearly Overview</CardTitle>
                         <CardDescription>Your spending this year</CardDescription>
