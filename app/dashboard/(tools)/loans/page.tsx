@@ -70,7 +70,7 @@ export default async function LoansPage() {
               </Select>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
               {loans && loans.length > 0 ? (
                 loans.map((loan) => (
                   <LoanCard key={loan.id} loan={loan} />

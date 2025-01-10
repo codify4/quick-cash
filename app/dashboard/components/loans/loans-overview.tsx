@@ -16,7 +16,7 @@ export function LoansOverview({ activeLoansCount, totalDisbursed, pendingLoansCo
           Quick overview of loan statistics
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-6 md:grid-cols-3">
+      <CardContent className="grid gap-6 grid-cols-1 lg:grid-cols-3">
         <OverviewCard 
           title="Total Active Loans"
           value={activeLoansCount}
