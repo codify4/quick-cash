@@ -18,6 +18,7 @@ import { LoanCard } from "../../components/loans/loan-card"
 import { LoansOverview } from "../../components/loans/loans-overview"
 import { dummyLoans } from "@/constants/loans"
 import { delay } from "@/lib/utils"
+import { Wallet } from "lucide-react"
 
 export default async function LoansPage() {
 
@@ -31,7 +32,10 @@ export default async function LoansPage() {
     <div className="container mx-auto space-y-8 flex flex-col items-center">
       <div className="flex flex-col lg:flex-row gap-5 items-center justify-between w-full lg:w-10/12">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">Loans</h2>
+          <h2 className="flex flex-row items-center text-3xl font-bold tracking-tight">
+            <Wallet size={24} className="mr-2"/>
+            Loans
+          </h2>
           <p className="text-muted-foreground">
             Manage and view all loan applications and their status
           </p>
