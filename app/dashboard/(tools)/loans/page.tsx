@@ -55,9 +55,9 @@ export default async function LoansPage() {
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4 mb-4">
-              <Input placeholder="Search by name..." className="flex" />
+              <Input placeholder="Search by name..." className="flex rounded-lg" />
               <Select defaultValue="all">
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[180px] rounded-lg">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>

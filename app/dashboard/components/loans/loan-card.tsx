@@ -29,7 +29,7 @@ type LoanCardProps = {
 
 export function LoanCard({ loan }: LoanCardProps) {
   return (
-    <Card className="relative overflow-hidden group rounded-2xl">
+    <Card className="relative overflow-hidden group rounded-2xl hover:scale-105 transition-transform duration-300">
       <div className="absolute top-0 left-0 w-full h-1.5">
         <Progress 
           value={((Number(loan.total_amount) - Number(loan.remaining_balance)) / Number(loan.total_amount)) * 100} 
