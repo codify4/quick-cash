@@ -50,6 +50,8 @@ export default function AddLoan() {
               <Input
                 id="name"
                 placeholder="e.g., Home Loan"
+                autoComplete="off"
+                className="rounded-lg"
               />
             </div>
 
@@ -60,6 +62,7 @@ export default function AddLoan() {
                   <Input
                     id="total_amount"
                     placeholder="$0.00"
+                    className="rounded-lg"
                   />
                 </div>
               </div>
@@ -70,6 +73,7 @@ export default function AddLoan() {
                   <Input
                     id="monthly_installment"
                     placeholder="$0.00"
+                    className="rounded-lg"
                   />
                 </div>
               </div>
@@ -83,14 +87,14 @@ export default function AddLoan() {
                     <Button
                       variant="outline"
                       className={cn(
-                        "w-full justify-start text-left font-normal",
+                        "w-full justify-start text-left font-normal rounded-lg",
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       <span>Pick a date</span>
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className="w-auto p-0 rounded-lg" align="start">
                     <Calendar
                       mode="single"
                       initialFocus
@@ -102,10 +106,10 @@ export default function AddLoan() {
               <div className="space-y-2">
                 <Label htmlFor="payment_frequency">Payment Frequency</Label>
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-lg">
                     <SelectValue placeholder="Select frequency" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="rounded-lg">
                     <SelectItem value="monthly">Monthly</SelectItem>
                     <SelectItem value="bi-weekly">Bi-weekly</SelectItem>
                     <SelectItem value="weekly">Weekly</SelectItem>
@@ -117,10 +121,10 @@ export default function AddLoan() {
             <div className="space-y-2">
               <Label htmlFor="status">Status</Label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="rounded-lg">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="rounded-lg">
                   <SelectItem value="Active">Active</SelectItem>
                   <SelectItem value="Pending">Pending</SelectItem>
                   <SelectItem value="Completed">Completed</SelectItem>

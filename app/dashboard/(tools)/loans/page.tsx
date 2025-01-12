@@ -22,7 +22,7 @@ import { Wallet } from "lucide-react"
 
 export default async function LoansPage() {
 
-  await delay(2000);
+  //await delay(2000);
   const loans = dummyLoans;
   const activeLoans = loans.filter(loan => loan.status === 'Active');
   const totalDisbursed = loans.reduce((sum, loan) => sum + Number(loan.total_amount), 0);
