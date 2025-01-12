@@ -28,7 +28,8 @@ import {
     Home,
     Gift,
     Coffee,
-    Heart
+    Heart,
+    Plus
 } from "lucide-react"
 
 const icons = [
@@ -49,6 +50,7 @@ export function AddExpense() {
         <Dialog>
             <DialogTrigger asChild>
                 <Button className="bg-primary text-white rounded-lg w-full lg:w-auto">
+                    <Plus className="mr-2 h-4 w-4" />
                     Add Expense
                 </Button>
             </DialogTrigger>

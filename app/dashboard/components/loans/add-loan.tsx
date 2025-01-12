@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { PlusCircle, Calendar as CalendarIcon } from "lucide-react"
+import { Plus, Calendar as CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
@@ -32,7 +32,7 @@ export default function AddLoan() {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="bg-primary text-white rounded-lg w-full lg:w-auto">
-          <PlusCircle className="mr-2 h-4 w-4" />
+          <Plus className="mr-2 h-4 w-4" />
           New Loan
         </Button>
       </DialogTrigger>
