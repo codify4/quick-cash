@@ -1,6 +1,13 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useCurrency } from "@/hooks/use-currency"
 import { 
     ShoppingBag, 
@@ -13,7 +20,10 @@ import {
     Gift,
     Coffee,
     Heart,
-    LucideIcon
+    LucideIcon,
+    MoreHorizontal,
+    Pencil,
+    Trash2
 } from "lucide-react"
 
 const icons: Record<string, LucideIcon> = {
@@ -47,9 +57,32 @@ const ExpenseCard = ({ name, description, amount, icon }: ExpenseCardProps) => {
                     <div className="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
                         <Icon className="w-6 h-6 text-primary" />
                     </div>
-                    <span className="text-lg font-semibold">
-                        {formatCurrency(amount)}
-                    </span>
+                    <div className="flex items-center gap-2">
+                        <span className="text-lg font-semibold">
+                            {formatCurrency(amount)}
+                        </span>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity -mr-2"
+                                >
+                                    <MoreHorizontal className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
+                                <DropdownMenuItem className="gap-2 cursor-pointer">
+                                    <Pencil className="h-4 w-4" />
+                                    Edit
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
+                                    <Trash2 className="h-4 w-4" />
+                                    Delete
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
                 </div>
                 <div className="space-y-1.5">
                     <h3 className="font-medium text-base">{name}</h3>

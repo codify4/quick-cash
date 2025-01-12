@@ -68,12 +68,12 @@ const SubscriptionCard = ({ subscription }: SubCardProps) => {
                                 <MoreHorizontal className="h-4 w-4" />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start" className="w-[160px]">
-                            <DropdownMenuItem className="gap-2">
+                        <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
+                            <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Pencil className="h-4 w-4" />
                                 Edit
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="gap-2 text-primary">
+                            <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
                                 <Trash2 className="h-4 w-4" />
                                 Delete
                             </DropdownMenuItem>

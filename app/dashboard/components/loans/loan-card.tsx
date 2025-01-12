@@ -9,8 +9,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Progress } from "@/components/ui/progress"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 
 type Loan = {
   id: string
@@ -39,14 +45,37 @@ export function LoanCard({ loan }: LoanCardProps) {
       <div className="p-6 pt-8">
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-semibold text-lg tracking-tight">{loan.name}</h3>
-          <Badge 
-            variant={loan.status === 'Active' ? 'destructive' : 
-                    loan.status === 'Completed' ? 'default' :
-                    'secondary'}
-            className={`rounded-full font-medium ${loan.status === 'Pending' ? 'text-black' : 'text-white'}`}
-          >
-            {loan.status}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge 
+              variant={loan.status === 'Active' ? 'destructive' : 
+                      loan.status === 'Completed' ? 'default' :
+                      'secondary'}
+              className={`rounded-full font-medium ${loan.status === 'Pending' ? 'text-black' : 'text-white'}`}
+            >
+              {loan.status}
+            </Badge>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity -mr-2"
+                >
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
+                <DropdownMenuItem className="gap-2 cursor-pointer">
+                  <Pencil className="h-4 w-4" />
+                  Edit
+                </DropdownMenuItem>
+                <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
+                  <Trash2 className="h-4 w-4" />
+                  Delete
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
 
         <div className="space-y-1 mb-6">
