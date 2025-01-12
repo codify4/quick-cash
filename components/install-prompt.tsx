@@ -8,6 +8,7 @@ export function InstallPrompt() {
     const [isIOS, setIsIOS] = useState(false)
     const [isStandalone, setIsStandalone] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
+    const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
    
     useEffect(() => {
       setIsIOS(
@@ -16,7 +17,33 @@ export function InstallPrompt() {
       
       setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
       setIsStandalone(window.matchMedia('(display-mode: standalone)').matches)
+
+      // Handle PWA install prompt
+      const handleBeforeInstallPrompt = (e: Event) => {
+        e.preventDefault()
+        setDeferredPrompt(e)
+      }
+
+      window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+
+      return () => {
+        window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+      }
     }, [])
+
+    const handleInstallClick = async () => {
+      if (!deferredPrompt) return
+
+      // Show the install prompt
+      deferredPrompt.prompt()
+
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice
+      
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null)
+      }
+    }
    
     if (isStandalone || !isMobile) {
       return null 
@@ -42,8 +69,8 @@ export function InstallPrompt() {
               </p>
             )}
           </div>
-          {!isIOS && (
-            <Button variant="outline" className="w-full text-white">
+          {!isIOS && deferredPrompt && (
+            <Button variant="outline" className="w-full text-white" onClick={handleInstallClick}>
               Install App
             </Button>
           )}
