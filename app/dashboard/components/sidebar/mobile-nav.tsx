@@ -21,7 +21,7 @@ export function MobileNav({ tabs }: MobileNavProps) {
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 border-t bg-background">
       <AnimatePresence>
         <motion.div 
-          className="flex items-center justify-around p-2 pb-3"
+          className="flex items-center justify-center gap-[70px] sm:gap-40 p-2 pb-5"
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           exit={{ y: 100 }}
