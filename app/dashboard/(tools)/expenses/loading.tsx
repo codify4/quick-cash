@@ -16,7 +16,7 @@ export default function LoadingExpenses() {
         <Skeleton className="h-10 w-full rounded-xl mb-4" />
 
         <div className="space-y-4">
-          <div className="space-y-4 w-[393px] sm:w-[480px] lg:w-full">
+          <div className="space-y-4 w-[393px] md:w-[735px] lg:w-full">
             <div className="grid grid-cols-2 gap-4">
               {Array.from({ length: 2 }).map((_, i) => (
                 <Skeleton key={i} className="h-[200px] rounded-2xl" />

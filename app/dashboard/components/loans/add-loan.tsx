@@ -31,7 +31,7 @@ export default function AddLoan() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-primary text-white rounded-lg w-full lg:w-auto">
+        <Button className="bg-primary text-white rounded-lg w-full md:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           New Loan
         </Button>

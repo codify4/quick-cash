@@ -40,7 +40,7 @@ export default function DashboardLayout({
                 </div>
               </div>
             </header>
-            <main className="flex p-4">
+            <main className="flex p-4 pb-24 lg:pb-4">
               {children}
               <MobileNav tabs={tabs} />
             </main>

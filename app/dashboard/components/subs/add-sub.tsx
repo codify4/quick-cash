@@ -31,7 +31,7 @@ export function AddSubscription() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="text-white w-full lg:w-auto rounded-lg">
+                <Button className="text-white w-full md:w-auto rounded-lg">
                     <Plus className="mr-2 h-4 w-4" />
                     New Subscription
                 </Button>

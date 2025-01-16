@@ -30,7 +30,7 @@ export default async function LoansPage() {
 
   return (
     <div className="container mx-auto space-y-8 flex flex-col items-center">
-      <div className="flex flex-col lg:flex-row gap-5 items-center justify-between w-full lg:w-10/12">
+      <div className="flex flex-col md:flex-row gap-5 items-center justify-between w-full lg:w-10/12">
         <div>
           <h2 className="flex flex-row items-center text-3xl font-bold tracking-tight">
             <Wallet size={24} className="mr-2"/>
@@ -74,7 +74,7 @@ export default async function LoansPage() {
               </Select>
             </div>
 
-            <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
               {loans && loans.length > 0 ? (
                 loans.map((loan) => (
                   <LoanCard key={loan.id} loan={loan} />
