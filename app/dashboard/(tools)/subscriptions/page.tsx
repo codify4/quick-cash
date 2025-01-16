@@ -2,10 +2,8 @@ import { Repeat } from "lucide-react"
 import { subscriptions } from "@/constants/subscriptions"
 import { AddSubscription } from "@/app/dashboard/components/subs/add-sub"
 import SubscriptionCard from "../../components/subs/sub-card"
-import { delay } from "@/lib/utils"
 
 export default async function SubscriptionsPage() {
-  await delay(2000)
   return (
     <div className="container mx-auto space-y-8 flex flex-col items-center">
       <div className="flex flex-col md:flex-row gap-5 items-center justify-between w-full lg:w-10/12">

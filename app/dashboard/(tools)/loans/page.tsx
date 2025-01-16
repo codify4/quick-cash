@@ -17,12 +17,10 @@ import AddLoan from "../../components/loans/add-loan"
 import { LoanCard } from "../../components/loans/loan-card"
 import { LoansOverview } from "../../components/loans/loans-overview"
 import { dummyLoans } from "@/constants/loans"
-import { delay } from "@/lib/utils"
 import { Wallet } from "lucide-react"
 
 export default async function LoansPage() {
 
-  //await delay(2000);
   const loans = dummyLoans;
   const activeLoans = loans.filter(loan => loan.status === 'Active');
   const totalDisbursed = loans.reduce((sum, loan) => sum + Number(loan.total_amount), 0);

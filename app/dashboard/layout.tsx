@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sidebar"
 import { MobileNav } from './components/sidebar/mobile-nav';
 import { HeaderUser } from "@/app/dashboard/components/header-user"
+import { PageTransition } from "@/app/dashboard/components/page-transition"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -41,7 +42,9 @@ export default function DashboardLayout({
               </div>
             </header>
             <main className="flex p-4 pb-24 lg:pb-4">
-              {children}
+              <PageTransition>
+                {children}
+              </PageTransition>
               <MobileNav tabs={tabs} />
             </main>
           </SidebarInset>

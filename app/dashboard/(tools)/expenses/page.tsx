@@ -2,11 +2,8 @@ import { Receipt } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Overview from "../../components/expenses/overview"
 import Categories from "../../components/expenses/categories/categories"
-import { delay } from "@/lib/utils"
 
 const ExpensesPage = async () => {
-
-  await delay(2000);
 
   return (
     <div className="container mx-auto space-y-8 flex flex-col items-center">
