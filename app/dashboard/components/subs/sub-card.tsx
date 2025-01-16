@@ -32,7 +32,7 @@ type SubCardProps = {
 const SubscriptionCard = ({ subscription }: SubCardProps) => {
     return (
         <Card
-            className="group relative rounded-2xl hover:scale-105 transition-transform duration-300"
+            className="group relative rounded-2xl lg:hover:scale-105 transition-transform duration-300"
         >
             <CardContent className="p-6">
                 <div className="flex items-start justify-between gap-4">
