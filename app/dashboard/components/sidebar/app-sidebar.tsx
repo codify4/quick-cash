@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useUser } from '@/hooks/use-user'
 
-const tabs = [
+export const tabs = [
   {
     name: "Expenses",
     url: "/dashboard/expenses",
@@ -55,17 +55,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   } : null
 
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavTabs tabs={tabs} />
-      </SidebarContent>
-      <SidebarFooter>
-        {userData && <NavUser user={userData} />}
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+    <>
+      <div className="hidden lg:block">
+        <Sidebar collapsible="icon" {...props}>
+          <SidebarHeader>
+            <TeamSwitcher teams={teams} />
+          </SidebarHeader>
+          <SidebarContent>
+            <NavTabs tabs={tabs} />
+          </SidebarContent>
+          <SidebarFooter>
+            {userData && <NavUser user={userData} />}
+          </SidebarFooter>
+          <SidebarRail />
+        </Sidebar>
+      </div>
+    </>
   )
 }
