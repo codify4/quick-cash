@@ -17,6 +17,7 @@ import {
     Trash2
 } from "lucide-react"
 import DeleteExpense from "./delete-expense"
+import EditExpense from "./edit-expense"
 
 interface ExpenseCardProps {
     name: string
@@ -53,8 +54,15 @@ const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardPro
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
                                 <DropdownMenuItem className="gap-2 cursor-pointer">
-                                    <Pencil className="h-4 w-4" />
-                                    Edit
+                                    <EditExpense 
+                                        id={id!} 
+                                        initialData={{
+                                            name,
+                                            description,
+                                            amount,
+                                            category
+                                        }} 
+                                    />
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
                                     <DeleteExpense id={id} />
