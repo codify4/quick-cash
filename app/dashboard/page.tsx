@@ -9,10 +9,11 @@ import Link from "next/link";
 import { useCurrency } from "@/hooks/use-currency";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
+import { CurrencyDisplay } from "@/components/currency-display";
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User>();
-  const { formatCurrency } = useCurrency();
+  const [totalExpenses, setTotalExpenses] = useState(0);
   const supabase = createClient();
 
   useEffect(() => {
@@ -25,6 +26,27 @@ export default function DashboardPage() {
     };
     getUser();
   }, []);
+
+  useEffect(() => {
+    const fetchTotalExpenses = async () => {
+      if (!user) return
+      
+      const { data, error } = await supabase
+        .from('expenses')
+        .select('amount')
+        .eq('user_id', user.id)
+      
+      if (error) {
+        console.error('Error fetching total expenses:', error)
+        return
+      }
+
+      const total = data.reduce((sum, expense) => sum + expense.amount, 0)
+      setTotalExpenses(total)
+    }
+
+    fetchTotalExpenses()
+  }, [user])
 
   if (!user) return null;
     
@@ -41,19 +63,19 @@ export default function DashboardPage() {
             <CardTitle>Quick Links</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button variant="ghost" className="w-full justify-between" asChild>
+            <Button variant="ghost" className="w-full justify-between rounded-lg" asChild>
               <Link href="/dashboard/expenses">
                 Manage Expenses
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="ghost" className="w-full justify-between" asChild>
+            <Button variant="ghost" className="w-full justify-between rounded-lg" asChild>
               <Link href="/dashboard/loans">
                 Track Loans
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="ghost" className="w-full justify-between" asChild>
+            <Button variant="ghost" className="w-full justify-between rounded-lg" asChild>
               <Link href="/dashboard/subscriptions">
                 Check Subscriptions
                 <ArrowRight className="h-4 w-4" />
@@ -68,16 +90,18 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent className="flex flex-col items-start justify-between gap-y-8">
             <div className="flex justify-between items-center w-full">
-              <span className="text-muted-foreground">Total Loans</span>
-              <span className="font-medium">{formatCurrency(0)}</span>
-            </div>
-            <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Expenses</span>
-              <span className="font-medium">{formatCurrency(0)}</span>
+              <span className="font-medium"><CurrencyDisplay amount={totalExpenses} /></span>
             </div>
+
+            <div className="flex justify-between items-center w-full">
+              <span className="text-muted-foreground">Total Loans</span>
+              <span className="font-medium"><CurrencyDisplay amount={0} /></span>
+            </div>
+            
             <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Subscriptions</span>
-              <span className="font-medium">{formatCurrency(0)}</span>
+              <span className="font-medium"><CurrencyDisplay amount={0} /></span>
             </div>
           </CardContent>
         </Card>

@@ -5,6 +5,7 @@ import AddExpense from "./add-expense"
 import { getExpenses, type Period } from "@/actions/expenses"
 import { createClient } from "@/utils/supabase/server"
 import type { Expense } from "@/types/expenses"
+import { CurrencyDisplay } from "@/components/currency-display"
 
 const Categories = async () => {
     const supabase = await createClient()
@@ -76,7 +77,7 @@ const Categories = async () => {
                         <div className="space-y-1">
                             <p className="text-muted-foreground">Average Expense</p>
                             <p className="font-medium">
-                                ${expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : "0.00"}
+                                <CurrencyDisplay amount={expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : "0.00"} />
                             </p>
                         </div>
                         <div className="space-y-1">
