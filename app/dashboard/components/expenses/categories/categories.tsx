@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import ExpenseCard from "./expense-card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import AddExpense from "./add-expense"
-import { getExpenses } from "@/actions/expenses"
+import { getExpenses, type Period } from "@/actions/expenses"
 import { createClient } from "@/utils/supabase/server"
 import type { Expense } from "@/types/expenses"
 
@@ -30,18 +30,28 @@ const Categories = async () => {
                 </div>
             </CardHeader>
             <CardContent className="space-y-6">
-                <div className="flex gap-4">
-                    <Select defaultValue="thisMonth">
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select period" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="thisMonth">This Month</SelectItem>
-                            <SelectItem value="lastMonth">Last Month</SelectItem>
-                            <SelectItem value="last3Months">Last 3 Months</SelectItem>
-                            <SelectItem value="thisYear">This Year</SelectItem>
-                        </SelectContent>
-                    </Select>
+                <div className="flex gap-4 w-full">
+                    <form 
+                        action={async (formData: FormData) => {
+                            'use server'
+                            const period = formData.get('period') as Period
+                            if (!user) return []
+                            return getExpenses(user.id, period)
+                        }}
+                        className="w-full"
+                    >
+                        <Select name="period" defaultValue="thisMonth">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select period" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="thisMonth">This Month</SelectItem>
+                                <SelectItem value="lastMonth">Last Month</SelectItem>
+                                <SelectItem value="last3Months">Last 3 Months</SelectItem>
+                                <SelectItem value="thisYear">This Year</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </form>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
