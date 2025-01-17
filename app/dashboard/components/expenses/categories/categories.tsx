@@ -2,18 +2,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import ExpenseCard from "./expense-card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import AddExpense from "./add-expense"
+import { getExpenses } from "@/actions/expenses"
+import { createClient } from "@/utils/supabase/server"
+import type { Expense } from "@/types/expenses"
 
-const expenses = [
-    { name: "Food & Dining", description: "Groceries, restaurants, and dining out", amount: 850, icon: "food" },
-    { name: "Transportation", description: "Gas, public transit, and car maintenance", amount: 650, icon: "transportation" },
-    { name: "Shopping", description: "Clothing, electronics, and personal items", amount: 450, icon: "shopping" },
-    { name: "Utilities", description: "Electricity, water, and internet", amount: 350, icon: "utilities" },
-    { name: "Entertainment", description: "Movies, games, and hobbies", amount: 150, icon: "entertainment" },
-]
-
-const Categories = () => {
-    const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0)
+const Categories = async () => {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
     
+    const expenses: Expense[] = user ? await getExpenses(user.id) : []
+
+    const totalSpent = expenses.reduce((sum, expense) => sum + expense.amount, 0)
+    const highestExpense = expenses.reduce((max, expense) => 
+        expense.amount > max.amount ? expense : max, 
+        expenses[0] || { name: "No expenses", amount: 0 }
+    )
+
     return (
         <Card className="rounded-xl">
             <CardHeader>
@@ -41,13 +45,13 @@ const Categories = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                    {expenses.map((expense, index) => (
+                    {expenses.map((expense) => (
                         <ExpenseCard 
-                            key={index}
+                            key={expense.id}
                             name={expense.name}
                             description={expense.description}
                             amount={expense.amount}
-                            icon={expense.icon}
+                            category={expense.category}
                         />
                     ))}
                 </div>
@@ -56,11 +60,13 @@ const Categories = () => {
                     <div className="grid grid-cols-3 gap-4 text-sm">
                         <div className="space-y-1">
                             <p className="text-muted-foreground">Highest Expense</p>
-                            <p className="font-medium">Food & Dining</p>
+                            <p className="font-medium">{highestExpense.name}</p>
                         </div>
                         <div className="space-y-1">
                             <p className="text-muted-foreground">Average Expense</p>
-                            <p className="font-medium">${(totalSpent / expenses.length).toFixed(2)}</p>
+                            <p className="font-medium">
+                                ${expenses.length > 0 ? (totalSpent / expenses.length).toFixed(2) : "0.00"}
+                            </p>
                         </div>
                         <div className="space-y-1">
                             <p className="text-muted-foreground">Categories</p>

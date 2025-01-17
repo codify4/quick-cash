@@ -9,46 +9,24 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useCurrency } from "@/hooks/use-currency"
+import { icons } from "@/types/expenses"
 import { 
-    ShoppingBag, 
-    Utensils, 
-    Car, 
-    Lightbulb, 
-    Gamepad, 
-    Plane,
-    Home,
-    Gift,
-    Coffee,
-    Heart,
-    LucideIcon,
+    ShoppingBag,
     MoreHorizontal,
     Pencil,
     Trash2
 } from "lucide-react"
 
-const icons: Record<string, LucideIcon> = {
-    shopping: ShoppingBag,
-    food: Utensils,
-    transportation: Car,
-    utilities: Lightbulb,
-    entertainment: Gamepad,
-    travel: Plane,
-    home: Home,
-    gifts: Gift,
-    coffee: Coffee,
-    health: Heart
-}
-
 interface ExpenseCardProps {
     name: string
     description: string
     amount: number
-    icon: string
+    category: string
 }
 
-const ExpenseCard = ({ name, description, amount, icon }: ExpenseCardProps) => {
+const ExpenseCard = ({ name, description, amount, category }: ExpenseCardProps) => {
     const { formatCurrency } = useCurrency()
-    const Icon = icons[icon] || ShoppingBag
+    const Icon = icons[category] || ShoppingBag
 
     return (
         <Card className="p-6 lg:hover:scale-105 rounded-xl hover:shadow-lg transition-all duration-200 cursor-pointer group">
