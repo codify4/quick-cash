@@ -16,15 +16,17 @@ import {
     Pencil,
     Trash2
 } from "lucide-react"
+import DeleteExpense from "./delete-expense"
 
 interface ExpenseCardProps {
     name: string
     description: string
     amount: number
     category: string
+    id?: number
 }
 
-const ExpenseCard = ({ name, description, amount, category }: ExpenseCardProps) => {
+const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardProps) => {
     const { formatCurrency } = useCurrency()
     const Icon = icons[category] || ShoppingBag
 
@@ -55,8 +57,7 @@ const ExpenseCard = ({ name, description, amount, category }: ExpenseCardProps) 
                                     Edit
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
-                                    <Trash2 className="h-4 w-4" />
-                                    Delete
+                                    <DeleteExpense id={id} />
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

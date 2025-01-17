@@ -58,6 +58,7 @@ const Categories = async () => {
                     {expenses.map((expense) => (
                         <ExpenseCard 
                             key={expense.id}
+                            id={expense.id}
                             name={expense.name}
                             description={expense.description}
                             amount={expense.amount}
