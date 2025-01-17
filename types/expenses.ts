@@ -8,8 +8,18 @@ import {
     Home,
     Gift,
     Heart,
-    LucideIcon,
+    LucideIcon
 } from "lucide-react"
+
+export type Expense = {
+    id?: number;
+    created_at?: string;
+    name: string;
+    amount: number;
+    description: string;
+    category: string;
+    user_id: string;
+}
 
 export const icons: Record<string, LucideIcon> = {
     shopping: ShoppingBag,
@@ -22,14 +32,3 @@ export const icons: Record<string, LucideIcon> = {
     gifts: Gift,
     health: Heart
 }
-
-export type Expense = {
-    id?: number;
-    created_at?: string;
-    name: string;
-    amount: number;
-    description: string;
-    category: string;
-    user_id: string;
-  }
-  

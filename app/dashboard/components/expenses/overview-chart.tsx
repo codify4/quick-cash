@@ -2,6 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import type { Expense } from "@/types/expenses"
 
 import {
   Card,
@@ -16,29 +17,35 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-  { month: "January", expenses: 186 },
-  { month: "February", expenses: 305 },
-  { month: "March", expenses: 237 },
-  { month: "April", expenses: 73 },
-  { month: "May", expenses: 209 },
-  { month: "June", expenses: 214 },
-  { month: "July", expenses: 214 },
-  { month: "August", expenses: 120 },
-  { month: "September", expenses: 165 },
-  { month: "October", expenses: 198 },
-  { month: "November", expenses: 245 },
-  { month: "December", expenses: 312 }
+
+interface OverviewChartProps {
+    expenses: Expense[]
+}
+
+const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
 ]
 
 const chartConfig = {
-  expenses: {
-    label: "Expenses",
-    color: "hsl(var(--primary))",
-  },
+    expenses: {
+        label: "Expenses",
+        color: "hsl(var(--primary))",
+    },
 } satisfies ChartConfig
 
-export function OverviewChart() {
+export function OverviewChart({ expenses }: OverviewChartProps) {
+    // Group expenses by month
+    const monthlyExpenses = months.map(month => {
+        const monthIndex = months.indexOf(month)
+        const monthExpenses = expenses.filter(expense => {
+            const expenseDate = new Date(expense.created_at!)
+            return expenseDate.getMonth() === monthIndex
+        })
+        const total = monthExpenses.reduce((sum, expense) => sum + expense.amount, 0)
+        return { month, expenses: total }
+    })
+
     return (
         <Card className="lg:hover:scale-105 transition-transform duration-300 rounded-xl">
             <CardHeader>
@@ -49,7 +56,7 @@ export function OverviewChart() {
                 <ChartContainer config={chartConfig} className="h-[400px] w-full">
                     <LineChart
                         accessibilityLayer
-                        data={chartData}
+                        data={monthlyExpenses}
                         margin={{
                             left: 12,
                             right: 12,
