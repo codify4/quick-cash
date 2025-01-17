@@ -28,9 +28,11 @@ interface EditExpenseProps {
         amount: number
         category: string
     }
+    onClose?: () => void
 }
 
-function EditExpense({ id, initialData }: EditExpenseProps) {
+function EditExpense({ id, initialData, onClose }: EditExpenseProps) {
+    const [open, setOpen] = useState(false)
 
     const editExpense = async (formData: FormData) => {
         await updateExpense(id, {
@@ -39,10 +41,15 @@ function EditExpense({ id, initialData }: EditExpenseProps) {
             amount: parseFloat(formData.get('amount') as string),
             category: formData.get('category') as string,
         })
+        setOpen(false)
+        onClose?.()
     }
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={(value) => {
+            setOpen(value)
+            if (!value) onClose?.()
+        }}>
             <DialogTrigger asChild>
                 <div className="flex items-center gap-2 cursor-pointer" onClick={(e) => e.stopPropagation()}>
                     <Pencil className="h-4 w-4" />
@@ -55,7 +62,7 @@ function EditExpense({ id, initialData }: EditExpenseProps) {
                         Edit this Expense
                     </DialogTitle>
                 </DialogHeader>
-                <form action={editExpense} className="space-y-4" onClick={(e) => e.stopPropagation()}>
+                <form action={editExpense} className="space-y-4 select-none" onClick={(e) => e.stopPropagation()}>
                     <div className="space-y-4 py-4">
                         <div className="space-y-2">
                             <Label className="text-sm font-medium">Name</Label>

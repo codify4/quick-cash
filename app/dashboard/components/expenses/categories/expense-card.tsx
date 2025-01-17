@@ -13,11 +13,10 @@ import { icons } from "@/types/expenses"
 import { 
     ShoppingBag,
     MoreHorizontal,
-    Pencil,
-    Trash2
 } from "lucide-react"
 import DeleteExpense from "./delete-expense"
 import EditExpense from "./edit-expense"
+import { useState } from "react"
 
 interface ExpenseCardProps {
     name: string
@@ -30,6 +29,7 @@ interface ExpenseCardProps {
 const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardProps) => {
     const { formatCurrency } = useCurrency()
     const Icon = icons[category] || ShoppingBag
+    const [dropdownOpen, setDropdownOpen] = useState(false)
 
     return (
         <Card className="p-6 lg:hover:scale-105 rounded-xl hover:shadow-lg transition-all duration-200 cursor-pointer group">
@@ -42,7 +42,7 @@ const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardPro
                         <span className="text-lg font-semibold">
                             {formatCurrency(amount)}
                         </span>
-                        <DropdownMenu>
+                        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                             <DropdownMenuTrigger asChild>
                                 <Button 
                                     variant="ghost" 
@@ -53,7 +53,10 @@ const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardPro
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
-                                <DropdownMenuItem className="gap-2 cursor-pointer">
+                                <DropdownMenuItem 
+                                    className="gap-2 cursor-pointer"
+                                    onSelect={(e) => e.preventDefault()}
+                                >
                                     <EditExpense 
                                         id={id!} 
                                         initialData={{
@@ -61,11 +64,18 @@ const ExpenseCard = ({ name, description, amount, category, id }: ExpenseCardPro
                                             description,
                                             amount,
                                             category
-                                        }} 
+                                        }}
+                                        onClose={() => setDropdownOpen(false)}
                                     />
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
-                                    <DeleteExpense id={id} />
+                                <DropdownMenuItem 
+                                    className="gap-2 text-primary cursor-pointer"
+                                    onSelect={(e) => e.preventDefault()}
+                                >
+                                    <DeleteExpense 
+                                        id={id}
+                                        onClose={() => setDropdownOpen(false)}
+                                    />
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
