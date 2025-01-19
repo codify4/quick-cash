@@ -36,12 +36,11 @@ export function MobileNav({ tabs }: MobileNavProps) {
                 key={tab.url}
                 href={tab.url}
                 className={cn(
-                  "flex flex-col items-center justify-center min-w-[4rem] p-2 text-xs",
+                  "flex flex-col items-center justify-center min-w-[4rem] p-2 text-xs rounded-full",
                   isActive ? "text-primary" : "text-muted-foreground"
                 )}
               >
-                <Icon className="h-5 w-5 mb-1" />
-                <span>{tab.name}</span>
+                <Icon className="w-6 h-6 mb-1" />
               </Link>
             )
           })}
