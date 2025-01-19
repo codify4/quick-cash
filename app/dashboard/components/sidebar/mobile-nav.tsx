@@ -41,6 +41,7 @@ export function MobileNav({ tabs }: MobileNavProps) {
                 )}
               >
                 <Icon className="w-6 h-6 mb-1" />
+                <span>{tab.name}</span>
               </Link>
             )
           })}
