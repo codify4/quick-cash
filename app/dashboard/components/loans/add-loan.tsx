@@ -26,10 +26,36 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
+import { createLoan } from "@/actions/loans"
+import { useState } from "react"
+import { useUser } from "@/hooks/use-user"
+import { Loan } from "@/types/loans"
 
 export default function AddLoan() {
+  const { user } = useUser();
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = async (formData: FormData) => {
+
+    if (!user) return;
+
+    const loan: Loan = {
+      name: formData.get('name') as string,
+      total_amount: parseFloat(formData.get('total_amount') as string).toString(),
+      monthly_installment: parseFloat(formData.get('monthly_installment') as string).toString(),
+      duration: parseInt(formData.get('duration') as string),
+      interest_rate: parseFloat(formData.get('interest_rate') as string),
+      start_date: date?.toISOString() ?? "",
+      status: formData.get('status') as string,
+      user_id: user.id
+    }
+    await createLoan(loan);
+
+    setOpen(false);
+  }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-primary text-white rounded-lg w-full md:w-auto">
           <Plus className="mr-2 h-4 w-4" />
@@ -43,103 +69,117 @@ export default function AddLoan() {
             Enter the details for your new loan
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-6">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Loan Name</Label>
-              <Input
-                id="name"
-                placeholder="e.g., Home Loan"
-                autoComplete="off"
-                className="rounded-lg"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
+        <form action={handleSubmit}>
+          <div className="space-y-6">
+            <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="total_amount">Total Amount</Label>
-                <div>
-                  <Input
-                    id="total_amount"
-                    placeholder="$0.00"
-                    className="rounded-lg"
-                  />
-                </div>
+                <Label htmlFor="name">Loan Name</Label>
+                <Input
+                  name="name"
+                  id="name"
+                  placeholder="e.g., Home Loan"
+                  autoComplete="off"
+                  className="rounded-lg"
+                />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="monthly_installment">Monthly Payment</Label>
-                <div>
-                  <Input
-                    id="monthly_installment"
-                    placeholder="$0.00"
-                    className="rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Start Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal rounded-lg",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      <span>Pick a date</span>
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0 rounded-lg" align="start">
-                    <Calendar
-                      mode="single"
-                      initialFocus
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="total_amount">Total Amount</Label>
+                  <div>
+                    <Input
+                      name="total_amount"
+                      id="total_amount"
+                      placeholder="$0.00"
+                      className="rounded-lg"
                     />
-                  </PopoverContent>
-                </Popover>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="monthly_installment">Monthly Payment</Label>
+                  <div>
+                    <Input
+                      name="monthly_installment"
+                      id="monthly_installment"
+                      placeholder="$0.00"
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="duration">Duration (months)</Label>
+                  <div>
+                    <Input
+                      name="duration"
+                      id="duration"
+                      placeholder="12"
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="interest_rate">Interest Rate (%)</Label>
+                  <Input 
+                    name="interest_rate" 
+                    id="interest_rate" 
+                    placeholder="6" 
+                    className="rounded-lg" 
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="payment_frequency">Payment Frequency</Label>
-                <Select>
-                  <SelectTrigger className="rounded-lg">
-                    <SelectValue placeholder="Select frequency" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-lg">
-                    <SelectItem value="monthly">Monthly</SelectItem>
-                    <SelectItem value="bi-weekly">Bi-weekly</SelectItem>
-                    <SelectItem value="weekly">Weekly</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Start Date</Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal rounded-lg",
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        <span>Pick a date</span>
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 rounded-lg" align="start">
+                      <Calendar
+                        mode="single"
+                        initialFocus
+                        selected={date}
+                        onSelect={setDate}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="status">Status</Label>
+                  <Select name="status" defaultValue="Active">
+                    <SelectTrigger className="rounded-lg">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-lg">
+                      <SelectItem value="Active">Active</SelectItem>
+                      <SelectItem value="Pending">Pending</SelectItem>
+                      <SelectItem value="Completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="status">Status</Label>
-              <Select>
-                <SelectTrigger className="rounded-lg">
-                  <SelectValue placeholder="Select status" />
-                </SelectTrigger>
-                <SelectContent className="rounded-lg">
-                  <SelectItem value="Active">Active</SelectItem>
-                  <SelectItem value="Pending">Pending</SelectItem>
-                  <SelectItem value="Completed">Completed</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="flex justify-end gap-4">
+              <DialogTrigger asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogTrigger>
+              <Button type="submit" className="bg-primary text-white">Add Loan</Button>
             </div>
           </div>
-
-          <div className="flex justify-end gap-4">
-            <DialogTrigger asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogTrigger>
-            <Button className="bg-primary text-white">Add Loan</Button>
-          </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   )

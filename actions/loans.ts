@@ -1,19 +1,9 @@
 'use server'
 
+import { Loan } from "@/types/loans";
 import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
 
-type Loan = {
-    id?: string
-    created_at?: string
-    name: string
-    total_amount: string
-    interest_rate: number
-    monthly_installment: string
-    frequency: string
-    status: string
-    start_date: string
-}
 
 export async function getLoans(userId: string) {
     const supabase = await createClient();
