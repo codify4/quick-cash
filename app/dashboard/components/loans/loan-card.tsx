@@ -16,29 +16,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Progress } from "@/components/ui/progress"
+import { Loan } from "@/types/loans"
 import { ArrowRight, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 
-type Loan = {
-  id: string
-  name: string
-  total_amount: string
-  monthly_installment: string
-  remaining_balance: string
-  next_due_date: string | null
-  status: string
-  start_date: string
-}
 
 type LoanCardProps = {
   loan: Loan
 }
 
 export function LoanCard({ loan }: LoanCardProps) {
+  const currentDate = new Date();
+  const startDate = new Date(loan.start_date);
+  const monthsPaid = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30)); // Approximate months since start date
+  const paidAmount = monthsPaid > 0 ? Number(loan.monthly_installment) * monthsPaid : 0;
+  const progress = (paidAmount / Number(loan.total_amount)) * 100;
+  
   return (
     <Card className="relative overflow-hidden group rounded-2xl lg:hover:scale-105 transition-transform duration-300">
       <div className="absolute top-0 left-0 w-full h-1.5">
         <Progress 
-          value={((Number(loan.total_amount) - Number(loan.remaining_balance)) / Number(loan.total_amount)) * 100} 
+          value={progress} 
           className="h-full rounded-none bg-muted"
         />
       </div>
@@ -84,7 +81,7 @@ export function LoanCard({ loan }: LoanCardProps) {
             <span className="text-muted-foreground text-sm">total amount</span>
           </div>
           <div className="text-muted-foreground text-sm">
-            ${Number(loan.remaining_balance).toLocaleString()} remaining
+            ${Number(loan.monthly_installment).toLocaleString()} monthly payment
           </div>
         </div>
 
@@ -95,14 +92,7 @@ export function LoanCard({ loan }: LoanCardProps) {
               className="w-full hover:bg-accent py-6 rounded-lg"
             >
               <div className="flex-1 text-left space-y-0.5">
-                <div className="text-sm font-medium">Next Payment</div>
-                <div className="text-muted-foreground text-sm">
-                  {loan.next_due_date ? new Date(loan.next_due_date).toLocaleDateString(undefined, { 
-                    month: 'short', 
-                    day: 'numeric',
-                    year: 'numeric'
-                  }) : 'N/A'}
-                </div>
+                More Details
               </div>
               <ArrowRight className="h-4 w-4 transition-transform group-hover/button:translate-x-1" />
             </Button>
@@ -123,25 +113,27 @@ export function LoanCard({ loan }: LoanCardProps) {
                   </p>
                 </div>
                 <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">Duration</p>
+                  <p className="text-lg font-semibold tracking-tight">
+                    {loan.duration} months
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">Start Date</p>
+                  <p className="text-lg font-semibold tracking-tight">
+                    {loan.start_date}
+                  </p>
+                </div>
+                <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Monthly Payment</p>
                   <p className="text-lg font-semibold tracking-tight">
                     ${Number(loan.monthly_installment).toLocaleString()}
                   </p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Remaining</p>
+                  <p className="text-sm text-muted-foreground">Interest Rate</p>
                   <p className="text-lg font-semibold tracking-tight">
-                    ${Number(loan.remaining_balance).toLocaleString()}
-                  </p>
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Start Date</p>
-                  <p className="text-lg font-semibold tracking-tight">
-                    {new Date(loan.start_date).toLocaleDateString(undefined, {
-                      month: 'long',
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
+                    {loan.interest_rate}%
                   </p>
                 </div>
               </div>
@@ -150,15 +142,15 @@ export function LoanCard({ loan }: LoanCardProps) {
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Payment Progress</span>
                   <span className="font-medium">
-                    {((Number(loan.total_amount) - Number(loan.remaining_balance)) / Number(loan.total_amount) * 100).toFixed(0)}%
+                    {progress.toFixed(0)}%
                   </span>
                 </div>
                 <Progress 
-                  value={((Number(loan.total_amount) - Number(loan.remaining_balance)) / Number(loan.total_amount)) * 100} 
+                  value={progress} 
                   className="h-2"
                 />
                 <p className="text-xs text-muted-foreground">
-                  ${(Number(loan.total_amount) - Number(loan.remaining_balance)).toLocaleString()} paid of ${Number(loan.total_amount).toLocaleString()}
+                  ${(paidAmount).toLocaleString()} paid of ${Number(loan.total_amount).toLocaleString()}
                 </p>
               </div>
             </div>

@@ -16,12 +16,17 @@ import { Input } from "@/components/ui/input"
 import AddLoan from "../../components/loans/add-loan"
 import { LoanCard } from "../../components/loans/loan-card"
 import { LoansOverview } from "../../components/loans/loans-overview"
-import { dummyLoans } from "@/constants/loans"
 import { Wallet } from "lucide-react"
+import { Loan } from "@/types/loans"
+import { getLoans } from "@/actions/loans"
+import { createClient } from "@/utils/supabase/server"
 
 export default async function LoansPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  const loans: Loan[] = user ? await getLoans(user.id) : []
 
-  const loans = dummyLoans;
   const activeLoans = loans.filter(loan => loan.status === 'Active');
   const totalDisbursed = loans.reduce((sum, loan) => sum + Number(loan.total_amount), 0);
   const pendingLoans = loans.filter(loan => loan.status === 'Pending');
