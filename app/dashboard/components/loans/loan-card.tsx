@@ -1,6 +1,8 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import {
   Dialog,
   DialogContent,
@@ -18,6 +20,8 @@ import {
 import { Progress } from "@/components/ui/progress"
 import { Loan } from "@/types/loans"
 import { ArrowRight, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
+import DeleteLoan from "./delete-loan"
+import { useState } from "react"
 
 
 type LoanCardProps = {
@@ -25,6 +29,8 @@ type LoanCardProps = {
 }
 
 export function LoanCard({ loan }: LoanCardProps) {
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  
   const currentDate = new Date();
   const startDate = new Date(loan.start_date);
   const monthsPaid = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30)); // Approximate months since start date
@@ -51,7 +57,7 @@ export function LoanCard({ loan }: LoanCardProps) {
             >
               {loan.status}
             </Badge>
-            <DropdownMenu>
+            <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
@@ -66,9 +72,14 @@ export function LoanCard({ loan }: LoanCardProps) {
                   <Pencil className="h-4 w-4" />
                   Edit
                 </DropdownMenuItem>
-                <DropdownMenuItem className="gap-2 text-primary cursor-pointer">
-                  <Trash2 className="h-4 w-4" />
-                  Delete
+                <DropdownMenuItem 
+                    className="gap-2 text-primary cursor-pointer"
+                    onSelect={(e) => e.preventDefault()}
+                >
+                    <DeleteLoan 
+                        id={loan.id}
+                        onClose={() => setDropdownOpen(false)}
+                    />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
