@@ -22,6 +22,7 @@ import { Loan } from "@/types/loans"
 import { ArrowRight, MoreHorizontal, Pencil, Trash2 } from "lucide-react"
 import DeleteLoan from "./delete-loan"
 import { useState } from "react"
+import EditLoan from "./edit-loan"
 
 
 type LoanCardProps = {
@@ -33,12 +34,12 @@ export function LoanCard({ loan }: LoanCardProps) {
   
   const currentDate = new Date();
   const startDate = new Date(loan.start_date);
-  const monthsPaid = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30)); // Approximate months since start date
+  const monthsPaid = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30));
   const paidAmount = monthsPaid > 0 ? Number(loan.monthly_installment) * monthsPaid : 0;
   const progress = (paidAmount / Number(loan.total_amount)) * 100;
   
   return (
-    <Card className="relative overflow-hidden group rounded-2xl lg:hover:scale-105 transition-transform duration-300">
+    <Card className="relative overflow-hidden group rounded-2xl">
       <div className="absolute top-0 left-0 w-full h-1.5">
         <Progress 
           value={progress} 
@@ -68,18 +69,21 @@ export function LoanCard({ loan }: LoanCardProps) {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-[160px] rounded-lg">
-                <DropdownMenuItem className="gap-2 cursor-pointer">
-                  <Pencil className="h-4 w-4" />
-                  Edit
+                <DropdownMenuItem className="gap-2 cursor-pointer" onSelect={(e) => e.preventDefault()}>
+                  <EditLoan 
+                    id={loan.id!}
+                    initialData={loan}
+                    onClose={() => setDropdownOpen(false)}
+                  />
                 </DropdownMenuItem>
                 <DropdownMenuItem 
                     className="gap-2 text-primary cursor-pointer"
-                    onSelect={(e) => e.preventDefault()}
+                  onSelect={(e) => e.preventDefault()}
                 >
-                    <DeleteLoan 
-                        id={loan.id}
-                        onClose={() => setDropdownOpen(false)}
-                    />
+                  <DeleteLoan 
+                    id={loan.id}
+                    onClose={() => setDropdownOpen(false)}
+                  />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
