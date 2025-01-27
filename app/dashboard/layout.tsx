@@ -42,9 +42,7 @@ export default function DashboardLayout({
               </div>
             </header>
             <main className="flex p-4 pb-24 lg:pb-4">
-              <PageTransition>
-                {children}
-              </PageTransition>
+              {children}
               <MobileNav tabs={tabs} />
             </main>
           </SidebarInset>
