@@ -36,7 +36,7 @@ export function LoanCard({ loan }: LoanCardProps) {
   const startDate = new Date(loan.start_date);
   const monthsPaid = Math.floor((currentDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 30));
   const paidAmount = monthsPaid > 0 ? Number(loan.monthly_installment) * monthsPaid : 0;
-  const progress = (paidAmount / Number(loan.total_amount)) * 100;
+  const progress = (paidAmount / Number(loan.total_amount)) * 100; // add button to update payed amount, calc progress based on that
   
   return (
     <Card className="relative overflow-hidden group rounded-2xl">

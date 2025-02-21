@@ -4,10 +4,11 @@ import InteractiveHoverButton from "../ui/interactive-hover-button";
 import Particles from "../ui/particles";
 import BlurFade from "../ui/blur-fade";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-24 px-4">
+    <section className="pt-10 pb-24 px-4">
       <div className="container mx-auto text-center">
         <div className="max-w-3xl mx-auto space-y-8">
           <BlurFade>
@@ -27,7 +28,6 @@ export default function Hero() {
                   text="Get Started" 
                   className=" w-full rounded-xl hover:scale-105 transition-transform duration-300"
                 />
-                
               </Link>
 
               <Link href="/signin" className="w-9/12 sm:w-1/3 lg:hidden">
@@ -39,6 +39,9 @@ export default function Hero() {
             </div>
           </BlurFade>
         </div>
+          <BlurFade delay={0.5} className="z-50 w-full">
+            <Image src="/dashboard-scr.png" alt="Dashboard Screenshot" width={1600} height={900} className="mt-10 rounded-xl" />
+          </BlurFade>
       </div>
       <Particles
         className="absolute inset-0 h-full w-full"

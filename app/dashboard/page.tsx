@@ -52,8 +52,8 @@ export default function DashboardPage() {
   if (!user) return null;
     
   return (
-    <div className="container mx-auto space-y-8 flex flex-col items-center">
-      <div>
+    <div className="container mx-20 space-y-8 flex flex-col items-center">
+      <div className="flex flex-col items-start w-full">
         <h1 className="text-3xl font-bold">Welcome back!</h1>
         <p className="text-muted-foreground">{user.user_metadata?.full_name || user.email?.split('@')[0] || 'User'}</p>
       </div>
