@@ -14,6 +14,7 @@ import { CurrencyDisplay } from "@/components/currency-display";
 export default function DashboardPage() {
   const [user, setUser] = useState<User>();
   const [totalExpenses, setTotalExpenses] = useState(0);
+  const [totalLoans, setTotalLoans] = useState(0);
   const supabase = createClient();
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function DashboardPage() {
   if (!user) return null;
     
   return (
-    <div className="py-6 max-w-7xl mx-auto space-y-8">
+    <div className="container mx-auto space-y-8 flex flex-col items-center">
       <div>
         <h1 className="text-3xl font-bold">Welcome back!</h1>
         <p className="text-muted-foreground">{user.user_metadata?.full_name || user.email?.split('@')[0] || 'User'}</p>
@@ -96,7 +97,7 @@ export default function DashboardPage() {
 
             <div className="flex justify-between items-center w-full">
               <span className="text-muted-foreground">Total Loans</span>
-              <span className="font-medium"><CurrencyDisplay amount={0} /></span>
+              <span className="font-medium"><CurrencyDisplay amount={totalLoans} /></span>
             </div>
             
             <div className="flex justify-between items-center w-full">
