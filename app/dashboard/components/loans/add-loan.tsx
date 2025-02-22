@@ -42,10 +42,11 @@ export default function AddLoan() {
 
     const loan: Loan = {
       name: formData.get('name') as string,
-      total_amount: parseFloat(formData.get('total_amount') as string).toString(),
-      monthly_installment: parseFloat(formData.get('monthly_installment') as string).toString(),
+      total_amount: parseFloat(formData.get('total_amount') as string || '0'),
+      monthly_installment: parseFloat(formData.get('monthly_installment') as string || '0').toString(),
       duration: parseInt(formData.get('duration') as string),
-      interest_rate: parseFloat(formData.get('interest_rate') as string),
+      interest_rate: parseFloat(formData.get('interest_rate') as string || '0'),
+      paid_amount: parseFloat(formData.get('paid_amount') as string || '0'),
       start_date: date?.toISOString() ?? "",
       status: formData.get('status') as string,
       user_id: user.id
@@ -97,6 +98,18 @@ export default function AddLoan() {
                 </div>
 
                 <div className="space-y-2">
+                  <Label htmlFor="total_amount">Paid Amount</Label>
+                  <div>
+                    <Input
+                      name="paid_amount"
+                      id="paid_amount"
+                      placeholder="$0.00"
+                      className="rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
                   <Label htmlFor="monthly_installment">Monthly Payment</Label>
                   <div>
                     <Input
@@ -120,15 +133,15 @@ export default function AddLoan() {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="interest_rate">Interest Rate (%)</Label>
-                  <Input 
-                    name="interest_rate" 
-                    id="interest_rate" 
-                    placeholder="6" 
-                    className="rounded-lg" 
-                  />
-                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="interest_rate">Interest Rate (%)</Label>
+                <Input 
+                  name="interest_rate" 
+                  id="interest_rate" 
+                  placeholder="6" 
+                  className="rounded-lg" 
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
