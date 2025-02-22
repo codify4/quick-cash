@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <Header />
       <main className="min-h-screen">
-        <section className="lg:pt-32 pb-10 px-4">
+        <section className="pt-20 lg:pt-32 pb-10 px-4">
           <Hero />
         </section>
         <section id="features" className="py-32 flex items-center justify-center">
