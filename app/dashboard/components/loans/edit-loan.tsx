@@ -33,7 +33,7 @@ interface EditLoanProps {
     id: string
     initialData: {
         name: string
-        total_amount: string
+        total_amount: number
         monthly_installment: string
         duration: number
         interest_rate: number
@@ -50,7 +50,7 @@ function EditLoan({ id, initialData, onClose }: EditLoanProps) {
     const editLoan = async (formData: FormData) => {
         await updateLoan(id, {
             name: formData.get('name') as string,
-            total_amount: parseFloat(formData.get('total_amount') as string).toString(),
+            total_amount: parseFloat(formData.get('total_amount') as string),
             monthly_installment: parseFloat(formData.get('monthly_installment') as string).toString(),
             duration: parseInt(formData.get('duration') as string),
             interest_rate: parseFloat(formData.get('interest_rate') as string),
